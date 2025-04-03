@@ -13,12 +13,13 @@ const skills = [
 
 const About = () => {
   return (
-    <section className="h-full flex items-center justify-center bg-white">
-      <div className="container mx-auto px-4 py-8">
+    <section className="h-full flex items-start justify-center bg-white safe-area">
+      <div className="container mx-auto px-4 py-8 overflow-y-auto" style={{ maxHeight: 'calc(100vh - var(--header-height) - var(--footer-height))' }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
+          className="max-w-5xl mx-auto pb-20"
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
