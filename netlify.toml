@@ -1,0 +1,18 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.vimeo.com *.youtube.com *.imdb.com; img-src 'self' data: https:; media-src 'self' *.vimeo.com *.youtube.com; frame-src 'self' *.vimeo.com *.youtube.com *.imdb.com;" 
