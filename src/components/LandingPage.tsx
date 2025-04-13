@@ -130,7 +130,7 @@ const LandingPage = () => {
             {/* Buttons */}
             <div className="flex justify-center gap-16 mb-8">
               <a 
-                href="https://github.com/gilyasur/pekerPort/blob/main/public/projects/pdf/next.pdf" 
+                href="/projects/pdf/next.pdf" 
                 className="bg-[#FF8080] text-white px-6 py-3 rounded-full hover:bg-[#FF8080]/90 transition-colors"
                 download
               >
