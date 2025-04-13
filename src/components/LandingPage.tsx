@@ -39,19 +39,19 @@ const projects = [
   {
     id: 1,
     title: 'VFX Showreel',
-    thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Film_Cover_v001.png',
     videoUrl: 'https://vimeo.com/202516691'
   },
   {
     id: 2,
     title: 'Digital Composition',
-    thumbnail: 'For_Gilo/Footage/Covers/Film_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074932894'
   },
   {
     id: 3,
     title: 'VFX Integration',
-    thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074932475'
   },
   {
@@ -63,7 +63,7 @@ const projects = [
   {
     id: 5,
     title: 'Digital Composition 2',
-    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074936568'
   },
   {
