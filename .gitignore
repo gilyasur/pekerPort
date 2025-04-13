@@ -38,3 +38,6 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+
+# Large files
+deploy-netlify 2.zip
