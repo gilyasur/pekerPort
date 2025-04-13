@@ -91,20 +91,22 @@ const LandingPage = () => {
           <div className="flex items-center m-0 p-0">
             <div className="relative w-[180px] h-[160px] p-0 m-0">
               <Image
-                src="For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
+                src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
                 alt="Roy Peker Logo"
                 fill
                 className="object-contain object-left"
                 priority
+                unoptimized
               />
             </div>
             <div className="relative w-[250px] h-[140px] ml-3 overflow-hidden">
               <Image
-                src="For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001.png"
+                src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001.png"
                 alt="Roy Peker Name"
                 fill
                 className="object-contain object-left scale-[2.0] origin-center"
                 priority
+                unoptimized
               />
             </div>
           </div>
@@ -185,10 +187,11 @@ const LandingPage = () => {
                     className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
                   >
                     <Image
-                      src={project.thumbnail}
+                      src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
                       alt={project.title}
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   </button>
                 )}
