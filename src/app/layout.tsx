@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { SectionProvider } from '@/context/SectionContext';
 
 export const metadata: Metadata = {
@@ -18,11 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen overflow-hidden font-raleway">
         <SectionProvider>
-          <Navigation />
           <main className="min-h-screen">
             {children}
           </main>
-          <Footer />
         </SectionProvider>
       </body>
     </html>
