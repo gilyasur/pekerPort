@@ -40,7 +40,7 @@ const projects = [
     id: 1,
     title: 'VFX Showreel',
     thumbnail: 'For_Gilo/Footage/Covers/Film_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/202516691'
+    videoUrl: 'https://vimeo.com/1074932475'
   },
   {
     id: 2,
@@ -52,7 +52,7 @@ const projects = [
     id: 3,
     title: 'VFX Integration',
     thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074932475'
+    videoUrl: 'https://vimeo.com/202516691'
   },
   {
     id: 4,
