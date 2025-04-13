@@ -4,10 +4,10 @@ import { FaLinkedin, FaImdb, FaVimeoV, FaYoutube, FaInstagram } from 'react-icon
 
 const Footer = () => {
   return (
-    <footer className="fixed bottom-0 w-full bg-white/80 backdrop-blur-sm border-t border-gray-200/50 py-4">
+    <footer className="fixed bottom-0 w-full bg-[#32506C] backdrop-blur-sm border-t border-gray-200/20 py-4">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-[#f2e3d5]">
             © {new Date().getFullYear()} Roy Peker. All rights reserved.
           </div>
           <div className="flex space-x-4">

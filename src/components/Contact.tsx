@@ -52,8 +52,8 @@ const socialLinks = [
 
 const Contact = () => {
   return (
-    <section className="h-full flex items-center justify-center bg-white">
-      <div className="container mx-auto px-4 py-8">
+    <section className="h-full flex items-center justify-center bg-[#F2E3D5]">
+      <div className="container mx-auto px-4 py-8 pt-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,39 +61,39 @@ const Contact = () => {
           className="max-w-4xl mx-auto"
         >
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-gray-600">Let's collaborate on your next project</p>
+            <h2 className="text-4xl font-bold mb-4 text-[#32506c] font-montserrat">Get in Touch</h2>
+            <p className="text-[#32506c]/80">Let's collaborate on your next project</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-xl font-bold mb-4">Contact Details</h3>
+                <h3 className="text-xl font-bold mb-4 text-[#32506c] font-montserrat">Contact Details</h3>
                 <ul className="space-y-4">
                   <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[#32506c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <a href="tel:+447400447658" className="text-gray-600 hover:text-gray-900">+447 400 44 7658</a>
+                    <a href="tel:+447400447658" className="text-[#32506c]/80 hover:text-[#32506c]">+447 400 44 7658</a>
                   </li>
                   <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[#32506c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <a href="mailto:roye.peker@gmail.com" className="text-gray-600 hover:text-gray-900">roye.peker@gmail.com</a>
+                    <a href="mailto:roye.peker@gmail.com" className="text-[#32506c]/80 hover:text-[#32506c]">roye.peker@gmail.com</a>
                   </li>
                   <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[#32506c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                     </svg>
-                    <a href="https://www.RoyPeker.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">www.RoyPeker.com</a>
+                    <a href="https://www.RoyPeker.com" target="_blank" rel="noopener noreferrer" className="text-[#32506c]/80 hover:text-[#32506c]">www.RoyPeker.com</a>
                   </li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-bold mb-4">Follow Me</h3>
+                <h3 className="text-xl font-bold mb-4 text-[#32506c] font-montserrat">Follow Me</h3>
                 <div className="flex gap-4">
                   {socialLinks.map((link) => (
                     <a
@@ -114,38 +114,38 @@ const Contact = () => {
             {/* Contact Form */}
             <form className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium text-[#32506c] mb-1">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-[#32506c]/30 rounded-lg focus:ring-2 focus:ring-[#32506c] focus:border-transparent bg-white/80"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-[#32506c] mb-1">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-[#32506c]/30 rounded-lg focus:ring-2 focus:ring-[#32506c] focus:border-transparent bg-white/80"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-[#32506c] mb-1">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-[#32506c]/30 rounded-lg focus:ring-2 focus:ring-[#32506c] focus:border-transparent bg-white/80"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#32506c] text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
+                className="w-full bg-[#32506c] text-[#f2e3d5] px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
               >
                 Send Message
               </button>

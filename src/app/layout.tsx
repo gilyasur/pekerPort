@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { SectionProvider } from '@/context/SectionContext';
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Roy Peker - Senior Digital Compositor",
@@ -19,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen overflow-hidden`}>
+      <body className="min-h-screen overflow-hidden font-raleway">
         <SectionProvider>
           <Navigation />
           <main className="min-h-screen">

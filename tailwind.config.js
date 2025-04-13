@@ -11,6 +11,10 @@ module.exports = {
         center: true,
         padding: '1rem',
       },
+      fontFamily: {
+        'montserrat': ['Montserrat', 'sans-serif'],
+        'raleway': ['Raleway', 'sans-serif'],
+      },
     },
   },
   plugins: [],
