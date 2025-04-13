@@ -39,37 +39,37 @@ const projects = [
   {
     id: 1,
     title: 'VFX Showreel',
-    thumbnail: '/For_Gilo/Footage/Covers/Film_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
     videoUrl: 'https://vimeo.com/202516691'
   },
   {
     id: 2,
     title: 'Digital Composition',
-    thumbnail: '/For_Gilo/Footage/Covers/Ads_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Film_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074932894'
   },
   {
     id: 3,
     title: 'VFX Integration',
-    thumbnail: '/For_Gilo/Footage/Covers/VFX_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074932475'
   },
   {
     id: 4,
     title: 'VFX Showreel 2',
-    thumbnail: '/For_Gilo/Footage/Covers/Onset_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Onset_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074933563'
   },
   {
     id: 5,
     title: 'Digital Composition 2',
-    thumbnail: '/For_Gilo/Footage/Covers/Lead_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074936568'
   },
   {
     id: 6,
     title: 'VFX Integration 2',
-    thumbnail: '/For_Gilo/Footage/Covers/AI_Cover_v001.jpg',
+    thumbnail: 'For_Gilo/Footage/Covers/AI_Cover_v001.jpg',
     videoUrl: 'https://vimeo.com/202516691'
   }
 ];
@@ -91,7 +91,7 @@ const LandingPage = () => {
           <div className="flex items-center m-0 p-0">
             <div className="relative w-[180px] h-[160px] p-0 m-0">
               <Image
-                src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
+                src="For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
                 alt="Roy Peker Logo"
                 fill
                 className="object-contain object-left"
@@ -100,7 +100,7 @@ const LandingPage = () => {
             </div>
             <div className="relative w-[250px] h-[140px] ml-3 overflow-hidden">
               <Image
-                src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001.png"
+                src="For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001.png"
                 alt="Roy Peker Name"
                 fill
                 className="object-contain object-left scale-[2.0] origin-center"
