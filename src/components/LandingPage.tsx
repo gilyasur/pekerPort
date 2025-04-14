@@ -6,6 +6,9 @@ import { useSection } from '@/context/SectionContext';
 import { FaLinkedin, FaImdb, FaVimeoV, FaYoutube, FaInstagram } from 'react-icons/fa';
 import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
+import { Montserrat } from 'next/font/google';
+
+const montserrat = Montserrat({ subsets: ['latin'] });
 
 const socialLinks = [
   {
@@ -83,76 +86,78 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col md:flex-row">
+    <div className={`h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] bg-[#345a7c] flex flex-col p-4 md:p-6 lg:p-8">
-        <div className="w-full flex flex-col">
-          {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-2">
-            <div className="relative w-[180px] h-[150px] p-0 m-0">
-              <Image
-                src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
-                alt="Roy Peker Logo"
-                fill
-                className="object-contain object-left"
-                priority
-                unoptimized
-              />
+      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-4 md:p-6 lg:p-8">
+        <div className="w-full flex flex-col h-full p-4 md:p-6 lg:p-8 justify-between" style={{paddingRight: 0}}>
+          <div>
+            {/* Logo and Name - Aligned to the left at top */}
+            <div className="flex items-center m-0 p-0 mb-4">
+              <div className="relative w-[220px] h-[130px] flex-shrink-0 p-0 m-0">
+                <Image
+                  src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
+                  alt="Roy Peker Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                  unoptimized
+                />
+              </div>
+              <div className="relative flex-1 h-[140px] ml-2 overflow-hidden">
+                <Image
+                  src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001 copy.png"
+                  alt="Roy Peker Name"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                  unoptimized
+                />
+              </div>
             </div>
-            <div className="relative w-[300px] h-[150px] ml-2 overflow-hidden">
-              <Image
-                src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001.png"
-                alt="Roy Peker Name"
-                fill
-                className="object-cover object-left scale-[2.0] "
-                priority
-                unoptimized
-              />
+
+            {/* Greeting header */}
+            <div className="mb-4 pl-4">
+              <h1 className="text-[#F2E3D5] text-2xl font-bold">Hi! I'm Roy!</h1>
             </div>
-          </div>
 
-          {/* Greeting header */}
-          <div className="mb-3 pl-2">
-            <h1 className="text-[#F2E3D5] text-2xl font-bold">Hi! I'm Roy!</h1>
-          </div>
-
-          {/* Description text */}
-          <div className="mb-4 pl-2">
-            <p className="text-[#F2E3D5]/90 max-w-lg text-base">
-              <strong>Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong><br />
-              <br></br>
-              Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!
-            </p>
+            {/* Description text */}
+            <div className="mb-6 pl-4 pr-4">
+              <p className="text-[#F2E3D5]/90 max-w-lg text-base">
+                <strong>Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong><br />
+                <br></br>
+                Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!
+              </p>
+            </div>
           </div>
 
           {/* Center the buttons and social links */}
-          <div className="flex-grow flex flex-col justify-center">
+          <div className="flex flex-col py-4">
             {/* Buttons */}
             <div className="flex justify-center gap-8 mb-4">
               <a 
                 href="/projects/pdf/next.pdf" 
-                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#EE9B3D]/90 transition-colors text-sm"
+                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
                 download="Roy_Peker_CV.pdf"
               >
                 Download CV
               </a>
               <button 
                 onClick={() => setActiveSection('contact')}
-                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#EE9B3D]/90 transition-colors text-sm"
+                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
               >
                 Say hello
               </button>
             </div>
 
             {/* Social Links */}
-            <div className="mt-6 flex justify-center gap-3">
+            <div className="mt-0 flex justify-center gap-4">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#f2e3d5] text-[#32506C] hover:bg-[#ffb868] transition-colors"
+                  className="w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
                   title={link.title}
                 >
                   {link.icon}
@@ -165,44 +170,46 @@ const LandingPage = () => {
 
       {/* Right side - Cream background with projects */}
       <div className="w-full md:w-[60%] bg-[#F2E3D5] p-1 md:p-3 lg:p-4 flex flex-col">
-        <div className="grid grid-cols-2 gap-1 md:gap-2 w-full">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              whileHover={{ scale: 1.02 }}
-              className="overflow-hidden rounded-lg shadow-md mb-1"
-            >
-              <div className="relative aspect-[16/7]">
-                {activeVideo === project.id ? (
-                  <iframe
-                    src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowFullScreen
-                    className="absolute top-0 left-0 w-full h-full border-0"
-                    title={project.title}
-                  ></iframe>
-                ) : (
-                  <button 
-                    onClick={() => handleVideoClick(project.id)}
-                    className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
-                  >
-                    <Image
-                      src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        {/* Copyright line */}
-        <div className="mt-auto pt-2 text-center text-[#345a7c]/80 text-xs">
-          Designed by Roy Peker © 2025. All Rights Reserved
+        <div className="w-full h-full flex flex-col p-6 md:p-8 lg:p-10 justify-between">
+          <div className="grid grid-cols-2 gap-3 md:gap-5 w-full pl-4 pr-6">
+            {projects.map((project) => (
+              <motion.div
+                key={project.id}
+                whileHover={{ scale: 1.02 }}
+                className="overflow-hidden rounded-lg shadow-md mb-2"
+              >
+                <div className="relative aspect-[16/9]">
+                  {activeVideo === project.id ? (
+                    <iframe
+                      src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                      className="absolute top-0 left-0 w-full h-full border-0"
+                      title={project.title}
+                    ></iframe>
+                  ) : (
+                    <button 
+                      onClick={() => handleVideoClick(project.id)}
+                      className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
+                    >
+                      <Image
+                        src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </button>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Copyright line */}
+          <div className="pt-4 text-center text-[#345a7c]/80 text-xs">
+            Designed by Roy Peker © 2025. All Rights Reserved
+          </div>
         </div>
       </div>
     </div>
