@@ -89,81 +89,76 @@ const LandingPage = () => {
     <div className={`h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
       <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-4 md:p-6 lg:p-8">
-        <div className="w-full flex flex-col h-full p-4 md:p-6 lg:p-8 justify-between" style={{paddingRight: 0}}>
-          <div>
-            {/* Logo and Name - Aligned to the left at top */}
-            <div className="flex items-center m-0 p-0 mb-4">
-              <div className="relative w-[220px] h-[130px] flex-shrink-0 p-0 m-0">
-                <Image
-                  src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
-                  alt="Roy Peker Logo"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                  unoptimized
-                />
-              </div>
-              <div className="relative flex-1 h-[140px] ml-2 overflow-hidden">
-                <Image
-                  src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001 copy.png"
-                  alt="Roy Peker Name"
-                  fill
-                  className="object-contain object-left"
-                  priority
-                  unoptimized
-                />
-              </div>
+        <div className="w-full flex flex-col h-full p-4 md:p-6 lg:p-8 justify-start" style={{paddingRight: 0, gap: '20px'}}>
+          {/* Logo and Name - Aligned to the left at top */}
+          <div className="flex items-center m-0 p-0 mb-4">
+            <div className="relative w-[220px] h-[130px] flex-shrink-0 p-0 m-0">
+              <Image
+                src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001-ezgif.com-loop-count.gif"
+                alt="Roy Peker Logo"
+                fill
+                className="object-contain object-left"
+                priority
+                unoptimized
+              />
             </div>
-
-            {/* Greeting header */}
-            <div className="mb-4 pl-4">
-              <h1 className="text-[#F2E3D5] text-2xl font-bold">Hi! I'm Roy!</h1>
-            </div>
-
-            {/* Description text */}
-            <div className="mb-6 pl-4 pr-4">
-              <p className="text-[#F2E3D5]/90 max-w-lg text-base">
-                <strong>Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong><br />
-                <br></br>
-                Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!
-              </p>
+            <div className="relative flex-1 h-[140px] ml-2 overflow-hidden">
+              <Image
+                src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001 copy.png"
+                alt="Roy Peker Name"
+                fill
+                className="object-contain object-left"
+                priority
+                unoptimized
+              />
             </div>
           </div>
 
-          {/* Center the buttons and social links */}
-          <div className="flex flex-col py-4">
-            {/* Buttons */}
-            <div className="flex justify-center gap-8 mb-4">
-              <a 
-                href="/projects/pdf/next.pdf" 
-                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
-                download="Roy_Peker_CV.pdf"
-              >
-                Download CV
-              </a>
-              <button 
-                onClick={() => setActiveSection('contact')}
-                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
-              >
-                Say hello
-              </button>
-            </div>
+          {/* Greeting header */}
+          <div className="mb-2 pl-4">
+            <h1 className="text-[#F2E3D5] text-2xl font-bold">Hi! I'm Roy!</h1>
+          </div>
 
-            {/* Social Links */}
-            <div className="mt-0 flex justify-center gap-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.title}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
-                  title={link.title}
-                >
-                  {link.icon}
-                </a>
-              ))}
-            </div>
+          {/* Description text */}
+          <div className="mb-0 pl-4 pr-4">
+            <p className="text-[#F2E3D5]/90 max-w-lg text-base">
+              <strong>Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong><br />
+              <br></br>
+              Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex justify-center gap-8 mt-1 mb-1">
+            <a 
+              href="/projects/pdf/next.pdf" 
+              className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
+              download="Roy_Peker_CV.pdf"
+            >
+              Download CV
+            </a>
+            <button 
+              onClick={() => setActiveSection('contact')}
+              className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
+            >
+              Say hello
+            </button>
+          </div>
+
+          {/* Social Links */}
+          <div className="mt-0 flex justify-center gap-4">
+            {socialLinks.map((link) => (
+              <a
+                key={link.title}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
+                title={link.title}
+              >
+                {link.icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>
