@@ -4,9 +4,10 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useSection } from '@/context/SectionContext';
 import { FaLinkedin, FaImdb, FaVimeoV, FaYoutube, FaInstagram } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { Montserrat } from 'next/font/google';
+import { createPortal } from 'react-dom';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
@@ -77,12 +78,130 @@ const projects = [
   }
 ];
 
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+  
+  return createPortal(
+    <div className="modal-container">
+      <style jsx global>{`
+        .modal-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+        }
+        .modal-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+          position: relative;
+          background: rgba(53, 92, 125, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-radius: 1rem;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          padding: 1.5rem;
+          margin: 1rem;
+          width: 100%;
+          max-width: 42rem;
+          z-index: 10;
+          color: #F2E3D5;
+        }
+        .modal-header {
+          color: #F2E3D5;
+          font-weight: bold;
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .form-row {
+          display: flex;
+          gap: 1rem;
+        }
+        .form-row > div {
+          flex: 1;
+        }
+      `}</style>
+      <div className="modal-overlay" onClick={onClose}></div>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 const LandingPage = () => {
   const { setActiveSection } = useSection();
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  // Only execute on client side
+  useEffect(() => {
+    setIsBrowser(true);
+  }, []);
 
   const handleVideoClick = (id: number) => {
     setActiveVideo(activeVideo === id ? null : id);
+  };
+
+  const handleOpenModal = () => {
+    setShowContactModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowContactModal(false);
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+    setShowContactModal(false);
   };
 
   return (
@@ -138,7 +257,7 @@ const LandingPage = () => {
               Download CV
             </a>
             <button 
-              onClick={() => setActiveSection('contact')}
+              onClick={handleOpenModal}
               className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
             >
               Say hello
@@ -207,6 +326,72 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      {isBrowser && (
+        <Modal isOpen={showContactModal} onClose={handleCloseModal}>
+          <button 
+            onClick={handleCloseModal} 
+            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          <h2 className="modal-header">Let's Talk</h2>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="form-row">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-[#F2E3D5] mb-1">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  className="w-full px-3 py-2 bg-transparent border-0 border-b-2 border-[#F2E3D5] focus:outline-none focus:border-[#FF8080] text-[#F2E3D5]"
+                  required
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-[#F2E3D5] mb-1">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  className="w-full px-3 py-2 bg-transparent border-0 border-b-2 border-[#F2E3D5] focus:outline-none focus:border-[#FF8080] text-[#F2E3D5]"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-[#F2E3D5] mb-1">A Few Words</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleFormChange}
+                rows={4}
+                className="w-full px-3 py-2 bg-transparent border-0 border-b-2 border-[#F2E3D5] focus:outline-none focus:border-[#FF8080] text-[#F2E3D5]"
+                required
+              />
+            </div>
+            
+            <button
+              type="submit"
+              className="w-full py-2 px-4 bg-[#FF8080] hover:bg-[#FFB868] text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF8080]"
+            >
+              Send Message
+            </button>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 };
