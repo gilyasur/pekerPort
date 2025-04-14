@@ -83,13 +83,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <div className="h-screen flex flex-col md:flex-row">
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] bg-[#345a7c] flex flex-col p-8 md:p-12 lg:p-8">
+      <div className="w-full md:w-[40%] bg-[#345a7c] flex flex-col p-4 md:p-6 lg:p-8">
         <div className="w-full flex flex-col">
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0">
-            <div className="relative w-[180px] h-[160px] p-0 m-0">
+          <div className="flex items-center m-0 p-0 mb-2">
+            <div className="relative w-[180px] h-[150px] p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001.gif"
                 alt="Roy Peker Logo"
@@ -99,12 +99,12 @@ const LandingPage = () => {
                 unoptimized
               />
             </div>
-            <div className="relative w-[250px] h-[140px] ml-3 overflow-hidden">
+            <div className="relative w-[300px] h-[150px] ml-2 overflow-hidden">
               <Image
                 src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001.png"
                 alt="Roy Peker Name"
                 fill
-                className="object-contain object-left scale-[2.0] origin-center"
+                className="object-cover object-left scale-[2.0] "
                 priority
                 unoptimized
               />
@@ -112,13 +112,13 @@ const LandingPage = () => {
           </div>
 
           {/* Greeting header */}
-          <div className="mb-6">
-            <h1 className="text-white text-3xl font-bold">Hi! I'm Roy!</h1>
+          <div className="mb-3 pl-2">
+            <h1 className="text-[#F2E3D5] text-2xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
-          <div className="mb-8">
-            <p className="text-white/90 max-w-lg text-lg">
+          <div className="mb-4 pl-2">
+            <p className="text-[#F2E3D5]/90 max-w-lg text-base">
               <strong>Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong><br />
               <br></br>
               Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!
@@ -128,31 +128,31 @@ const LandingPage = () => {
           {/* Center the buttons and social links */}
           <div className="flex-grow flex flex-col justify-center">
             {/* Buttons */}
-            <div className="flex justify-center gap-16 mb-8">
+            <div className="flex justify-center gap-8 mb-4">
               <a 
                 href="/projects/pdf/next.pdf" 
-                className="bg-[#FF8080] text-white px-6 py-3 rounded-full hover:bg-[#FF8080]/90 transition-colors"
+                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#EE9B3D]/90 transition-colors text-sm"
                 download="Roy_Peker_CV.pdf"
               >
                 Download CV
               </a>
               <button 
                 onClick={() => setActiveSection('contact')}
-                className="bg-[#EE9B3D] text-white px-6 py-3 rounded-full hover:bg-[#EE9B3D]/90 transition-colors"
+                className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#EE9B3D]/90 transition-colors text-sm"
               >
                 Say hello
               </button>
             </div>
 
             {/* Social Links */}
-            <div className="mt-24 flex justify-center gap-4">
+            <div className="mt-6 flex justify-center gap-3">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#f2e3d5] text-[#32506C] hover:bg-[#ffb868] transition-colors"
+                  className="w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#f2e3d5] text-[#32506C] hover:bg-[#ffb868] transition-colors"
                   title={link.title}
                 >
                   {link.icon}
@@ -164,7 +164,7 @@ const LandingPage = () => {
       </div>
 
       {/* Right side - Cream background with projects */}
-      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-1 md:p-4 lg:p-6 flex flex-col">
+      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-1 md:p-3 lg:p-4 flex flex-col">
         <div className="grid grid-cols-2 gap-1 md:gap-2 w-full">
           {projects.map((project) => (
             <motion.div
@@ -172,7 +172,7 @@ const LandingPage = () => {
               whileHover={{ scale: 1.02 }}
               className="overflow-hidden rounded-lg shadow-md mb-1"
             >
-              <div className="relative aspect-[16/9]">
+              <div className="relative aspect-[16/7]">
                 {activeVideo === project.id ? (
                   <iframe
                     src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
@@ -201,7 +201,7 @@ const LandingPage = () => {
         </div>
         
         {/* Copyright line */}
-        <div className="mt-auto pt-4 text-center text-[#345a7c]/80 text-sm">
+        <div className="mt-auto pt-2 text-center text-[#345a7c]/80 text-xs">
           Designed by Roy Peker © 2025. All Rights Reserved
         </div>
       </div>
