@@ -194,9 +194,18 @@ const LandingPage = () => {
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    // Map the EmailJS field names to our state properties
+    const fieldMapping: {[key: string]: string} = {
+      'user_name': 'name',
+      'user_email': 'email',
+      'message': 'message'
+    };
+    
+    const stateField = fieldMapping[name] || name;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [stateField]: value
     }));
   };
 
@@ -209,9 +218,9 @@ const LandingPage = () => {
     setSubmitStatus(null);
     
     // Replace these with your actual EmailJS credentials
-    const serviceId = 'YOUR_SERVICE_ID';
-    const templateId = 'YOUR_TEMPLATE_ID';
-    const publicKey = 'YOUR_PUBLIC_KEY';
+    const serviceId = 'service_958ibxe';
+    const templateId = 'template_5gfc4zi';
+    const publicKey = 'EMvss3sajXe2nwsjP';
     
     emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
       .then((result) => {
@@ -250,20 +259,10 @@ const LandingPage = () => {
         <div className="w-full flex flex-col h-full p-1 md:p-2 lg:p-4 justify-center items-start" style={{paddingRight: 0, gap: '8px', marginTop: '-5vh'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-1 w-full pr-4 md:pr-8">
-            <div className="relative w-[220px] md:w-[260px] h-[130px] md:h-[150px] flex-shrink-0 p-0 m-0">
+            <div className="relative w-[420px] md:w-[520px] h-[150px] md:h-[180px] flex-shrink-0 p-0 m-0">
               <Image
-                src="/For_Gilo/Footage/Logo/Alpha_Large_Logo_2025_v001.png"
-                alt="Roy Peker Logo"
-                fill
-                className="object-contain object-left"
-                priority
-                unoptimized
-              />
-            </div>
-            <div className="relative w-[210px] md:w-[280px] h-[130px] md:h-[160px] flex-shrink-0 overflow-hidden" style={{ marginLeft: "-10px" }}>
-              <Image
-                src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001 copy.png"
-                alt="Roy Peker Name"
+                src="/For_Gilo/Footage/Logo/Combine_v002_00080.png"
+                alt="Roy Peker Logo and Name"
                 fill
                 className="object-contain object-left"
                 priority
@@ -304,7 +303,7 @@ const LandingPage = () => {
 
           {/* Social Links */}
           <div className="mt-0 pl-8 md:pl-10" style={{width: '300px'}}>
-            <div className="flex justify-evenly gap-2 w-full">
+            <div className="flex justify-start gap-3.5 w-full">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
