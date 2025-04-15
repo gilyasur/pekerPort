@@ -212,8 +212,6 @@ const LandingPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formRef.current) return;
-    
     setIsSubmitting(true);
     setSubmitStatus(null);
     
@@ -222,34 +220,74 @@ const LandingPage = () => {
     const templateId = 'template_5gfc4zi';
     const publicKey = 'EMvss3sajXe2nwsjP';
     
-    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
-      .then((result) => {
-        console.log('Email sent successfully:', result.text);
-        setSubmitStatus({
-          success: true,
-          message: 'Message sent successfully! I will get back to you soon.'
+    // First try with form
+    if (formRef.current) {
+      emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+        .then((result) => {
+          console.log('Email sent successfully:', result.text);
+          handleEmailSuccess();
+        })
+        .catch((error) => {
+          console.error('Failed to send email with form method, trying direct method:', error.text);
+          
+          // If form method fails, try direct method
+          emailjs.send(serviceId, templateId, {
+            user_name: formData.name,
+            user_email: formData.email,
+            message: formData.message
+          }, publicKey)
+            .then((result) => {
+              console.log('Email sent successfully with direct method:', result.text);
+              handleEmailSuccess();
+            })
+            .catch((directError) => {
+              console.error('Failed to send email with direct method:', directError.text);
+              handleEmailError(directError.text);
+            });
         });
-        setFormData({
-          name: '',
-          email: '',
-          message: ''
+    } else {
+      // Fallback to direct method if form ref is not available
+      emailjs.send(serviceId, templateId, {
+        user_name: formData.name,
+        user_email: formData.email,
+        message: formData.message
+      }, publicKey)
+        .then((result) => {
+          console.log('Email sent successfully with direct method:', result.text);
+          handleEmailSuccess();
+        })
+        .catch((error) => {
+          console.error('Failed to send email with direct method:', error.text);
+          handleEmailError(error.text);
         });
-        // Close modal after 3 seconds of showing success message
-        setTimeout(() => {
-          setShowContactModal(false);
-          setSubmitStatus(null);
-        }, 3000);
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error.text);
-        setSubmitStatus({
-          success: false,
-          message: 'Failed to send message. Please try again later.'
-        });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    }
+  };
+  
+  // Helper functions to avoid code duplication
+  const handleEmailSuccess = () => {
+    setSubmitStatus({
+      success: true,
+      message: 'Message sent successfully! I will get back to you soon.'
+    });
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+    // Close modal after 3 seconds of showing success message
+    setTimeout(() => {
+      setShowContactModal(false);
+      setSubmitStatus(null);
+    }, 3000);
+    setIsSubmitting(false);
+  };
+  
+  const handleEmailError = (errorText: string) => {
+    setSubmitStatus({
+      success: false,
+      message: 'Failed to send message. Please try again later.'
+    });
+    setIsSubmitting(false);
   };
 
   return (
