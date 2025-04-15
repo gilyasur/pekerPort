@@ -285,7 +285,7 @@ const LandingPage = () => {
 
       {/* Right side - Cream background with projects */}
       <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-auto">
-        <div className="w-full h-full flex flex-col p-0 justify-between">
+        <div className="w-full h-full flex flex-col p-0">
           <div className="flex w-full px-8 mx-0 pt-8 space-x-3" style={{paddingTop: '50px'}}>
             <div className="flex flex-col items-end w-1/2 p-0">
               {projects.slice(0, 3).map((project) => (
@@ -358,7 +358,7 @@ const LandingPage = () => {
           </div>
           
           {/* Copyright line */}
-          <div className="pt-1 pb-2 mt-auto text-center text-[#345a7c]/80 text-[10px] md:text-xs">
+          <div className="pt-1 pb-2 text-center text-[#345a7c]/80 text-[10px] md:text-xs">
             Designed by Roy Peker © 2025. All Rights Reserved
           </div>
         </div>
