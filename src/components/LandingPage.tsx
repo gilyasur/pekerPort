@@ -4,10 +4,11 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useSection } from '@/context/SectionContext';
 import { FaLinkedin, FaImdb, FaVimeoV, FaYoutube, FaInstagram } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { Montserrat } from 'next/font/google';
 import { createPortal } from 'react-dom';
+import emailjs from '@emailjs/browser';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
@@ -49,25 +50,25 @@ const projects = [
   {
     id: 2,
     title: 'Digital Composition',
-    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074932475'
   },
   {
     id: 3,
     title: 'VFX Integration',
-    thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
     videoUrl: 'https://vimeo.com/202516691'
   },
   {
     id: 4,
     title: 'VFX Showreel 2',
-    thumbnail: 'For_Gilo/Footage/Covers/Onset_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074933563'
   },
   {
     id: 5,
     title: 'Digital Composition 2',
-    thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
+    thumbnail: 'For_Gilo/Footage/Covers/Onset_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074936568'
   },
   {
@@ -167,6 +168,12 @@ const LandingPage = () => {
     message: ''
   });
   const [isBrowser, setIsBrowser] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Only execute on client side
   useEffect(() => {
@@ -195,23 +202,55 @@ const LandingPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
-    setShowContactModal(false);
+    
+    if (!formRef.current) return;
+    
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    // Replace these with your actual EmailJS credentials
+    const serviceId = 'YOUR_SERVICE_ID';
+    const templateId = 'YOUR_TEMPLATE_ID';
+    const publicKey = 'YOUR_PUBLIC_KEY';
+    
+    emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
+        setSubmitStatus({
+          success: true,
+          message: 'Message sent successfully! I will get back to you soon.'
+        });
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        // Close modal after 3 seconds of showing success message
+        setTimeout(() => {
+          setShowContactModal(false);
+          setSubmitStatus(null);
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error.text);
+        setSubmitStatus({
+          success: false,
+          message: 'Failed to send message. Please try again later.'
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
     <div className={`h-screen flex flex-col md:flex-row overflow-auto ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
       <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-4 overflow-auto">
-        <div className="w-full flex flex-col h-full p-1 md:p-2 lg:p-4 justify-start" style={{paddingRight: 0, gap: '8px'}}>
+        <div className="w-full flex flex-col h-full p-1 md:p-2 lg:p-4 justify-center items-start" style={{paddingRight: 0, gap: '8px', marginTop: '-5vh'}}>
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-1">
-            <div className="relative w-[180px] md:w-[220px] h-[110px] md:h-[130px] flex-shrink-0 p-0 m-0">
+          <div className="flex items-center m-0 p-0 mb-1 w-full pr-4 md:pr-8">
+            <div className="relative w-[220px] md:w-[260px] h-[130px] md:h-[150px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Alpha_Large_Logo_2025_v001.png"
                 alt="Roy Peker Logo"
@@ -221,7 +260,7 @@ const LandingPage = () => {
                 unoptimized
               />
             </div>
-            <div className="relative flex-1 h-[100px] md:h-[120px] ml-4 md:ml-8 overflow-hidden" style={{ marginLeft: "-10px" }}>
+            <div className="relative w-[210px] md:w-[280px] h-[130px] md:h-[160px] flex-shrink-0 overflow-hidden" style={{ marginLeft: "-10px" }}>
               <Image
                 src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001 copy.png"
                 alt="Roy Peker Name"
@@ -265,7 +304,7 @@ const LandingPage = () => {
 
           {/* Social Links */}
           <div className="mt-0 pl-8 md:pl-10" style={{width: '300px'}}>
-            <div className="flex justify-between w-full">
+            <div className="flex justify-evenly gap-2 w-full">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
@@ -285,8 +324,8 @@ const LandingPage = () => {
 
       {/* Right side - Cream background with projects */}
       <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-auto">
-        <div className="w-full h-full flex flex-col p-0">
-          <div className="flex w-full px-8 mx-0 pt-8 space-x-3" style={{paddingTop: '50px'}}>
+        <div className="w-full h-full flex flex-col p-0 justify-center">
+          <div className="flex w-full px-8 mx-0 space-x-3">
             <div className="flex flex-col items-end w-1/2 p-0">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
@@ -354,12 +393,12 @@ const LandingPage = () => {
                   </div>
                 </motion.div>
               ))}
+              
+              {/* Copyright line - aligned with right column */}
+              <div className="w-[80%] mt-8 mb-2 text-right text-[#345a7c]/80 text-[10px] md:text-xs">
+                Designed by Roy Peker © 2025. All Rights Reserved
+              </div>
             </div>
-          </div>
-          
-          {/* Copyright line */}
-          <div className="pt-1 pb-2 text-center text-[#345a7c]/80 text-[10px] md:text-xs">
-            Designed by Roy Peker © 2025. All Rights Reserved
           </div>
         </div>
       </div>
@@ -378,18 +417,25 @@ const LandingPage = () => {
           
           <h2 className="modal-header">Let's Talk</h2>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {submitStatus && (
+            <div className={`p-3 mb-4 rounded-md ${submitStatus.success ? 'bg-green-500/20 text-green-100' : 'bg-red-500/20 text-red-100'}`}>
+              {submitStatus.message}
+            </div>
+          )}
+          
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
             <div className="form-row">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[#F2E3D5] mb-1">Name</label>
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="user_name"
                   value={formData.name}
                   onChange={handleFormChange}
                   className="w-full px-3 py-2 bg-transparent border-0 border-b-2 border-[#F2E3D5] focus:outline-none focus:border-[#FF8080] text-[#F2E3D5]"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -398,11 +444,12 @@ const LandingPage = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  name="user_email"
                   value={formData.email}
                   onChange={handleFormChange}
                   className="w-full px-3 py-2 bg-transparent border-0 border-b-2 border-[#F2E3D5] focus:outline-none focus:border-[#FF8080] text-[#F2E3D5]"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </div>
@@ -417,14 +464,16 @@ const LandingPage = () => {
                 rows={4}
                 className="w-full px-3 py-2 bg-transparent border-0 border-b-2 border-[#F2E3D5] focus:outline-none focus:border-[#FF8080] text-[#F2E3D5]"
                 required
+                disabled={isSubmitting}
               />
             </div>
             
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-[#FF8080] hover:bg-[#FFB868] text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF8080]"
+              className="w-full py-2 px-4 bg-[#FF8080] hover:bg-[#FFB868] text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF8080] disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSubmitting}
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </Modal>
