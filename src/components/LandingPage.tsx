@@ -205,15 +205,15 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={`h-screen flex flex-col md:flex-row ${montserrat.className}`}>
+    <div className={`h-screen flex flex-col md:flex-row overflow-auto ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-4 md:p-6 lg:p-8">
-        <div className="w-full flex flex-col h-full p-4 md:p-6 lg:p-8 justify-start" style={{paddingRight: 0, gap: '20px'}}>
+      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-4 overflow-auto">
+        <div className="w-full flex flex-col h-full p-1 md:p-2 lg:p-4 justify-start" style={{paddingRight: 0, gap: '8px'}}>
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-4">
-            <div className="relative w-[220px] h-[130px] flex-shrink-0 p-0 m-0">
+          <div className="flex items-center m-0 p-0 mb-1">
+            <div className="relative w-[180px] md:w-[220px] h-[110px] md:h-[130px] flex-shrink-0 p-0 m-0">
               <Image
-                src="/For_Gilo/Footage/Logo/Animated_Large_Logo_GIF_2025_v001-ezgif.com-loop-count.gif"
+                src="/For_Gilo/Footage/Logo/Alpha_Large_Logo_2025_v001.png"
                 alt="Roy Peker Logo"
                 fill
                 className="object-contain object-left"
@@ -221,7 +221,7 @@ const LandingPage = () => {
                 unoptimized
               />
             </div>
-            <div className="relative flex-1 h-[140px] ml-2 overflow-hidden">
+            <div className="relative flex-1 h-[100px] md:h-[120px] ml-4 md:ml-8 overflow-hidden" style={{ marginLeft: "-10px" }}>
               <Image
                 src="/For_Gilo/Footage/Name/Alpha_Large_NameTitle_2025_v001 copy.png"
                 alt="Roy Peker Name"
@@ -234,94 +234,131 @@ const LandingPage = () => {
           </div>
 
           {/* Greeting header */}
-          <div className="mb-2 pl-4">
-            <h1 className="text-[#F2E3D5] text-2xl font-bold">Hi! I'm Roy!</h1>
+          <div className="mb-4 pl-8 md:pl-10 mt-6">
+            <h1 className="text-[#F2E3D5] text-xl md:text-3xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
-          <div className="mb-0 pl-4 pr-4">
-            <p className="text-[#F2E3D5]/90 max-w-lg text-base">
-              <strong>Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong><br />
-              <br></br>
-              Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!
+          <div className="mb-8 pl-8 md:pl-10 pr-2 md:pr-4">
+            <p className="text-[#F2E3D5]/90 max-w-lg text-base md:text-base leading-relaxed">
+              <strong className="block mb-2">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
+              <span className="block mt-3">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-center gap-8 mt-1 mb-1">
+          <div className="flex justify-start gap-2 md:gap-4 mt-4 mb-0 pl-8 md:pl-10" style={{width: '300px'}}>
             <a 
               href="/projects/pdf/next.pdf" 
-              className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
+              className="bg-[#FF8080] text-white px-2 py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-base"
               download="Roy_Peker_CV.pdf"
             >
               Download CV
             </a>
             <button 
               onClick={handleOpenModal}
-              className="bg-[#FF8080] text-white px-4 py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm"
+              className="bg-[#FF8080] text-white px-2 py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-base"
             >
               Say hello
             </button>
           </div>
 
           {/* Social Links */}
-          <div className="mt-0 flex justify-center gap-4">
-            {socialLinks.map((link) => (
-              <a
-                key={link.title}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
-                title={link.title}
-              >
-                {link.icon}
-              </a>
-            ))}
+          <div className="mt-0 pl-8 md:pl-10" style={{width: '300px'}}>
+            <div className="flex justify-between w-full">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[24px] h-[24px] md:w-[28px] md:h-[28px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
+                  title={link.title}
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Right side - Cream background with projects */}
-      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-1 md:p-3 lg:p-4 flex flex-col">
-        <div className="w-full h-full flex flex-col p-6 md:p-8 lg:p-10 justify-between">
-          <div className="grid grid-cols-2 gap-3 md:gap-5 w-full pl-4 pr-6">
-            {projects.map((project) => (
-              <motion.div
-                key={project.id}
-                whileHover={{ scale: 1.02 }}
-                className="overflow-hidden rounded-lg shadow-md mb-2"
-              >
-                <div className="relative aspect-[16/9]">
-                  {activeVideo === project.id ? (
-                    <iframe
-                      src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowFullScreen
-                      className="absolute top-0 left-0 w-full h-full border-0"
-                      title={project.title}
-                    ></iframe>
-                  ) : (
-                    <button 
-                      onClick={() => handleVideoClick(project.id)}
-                      className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
-                    >
-                      <Image
-                        src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </button>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-auto">
+        <div className="w-full h-full flex flex-col p-0 justify-between">
+          <div className="flex w-full px-8 mx-0 pt-8 space-x-3" style={{paddingTop: '50px'}}>
+            <div className="flex flex-col items-end w-1/2 p-0">
+              {projects.slice(0, 3).map((project) => (
+                <motion.div
+                  key={project.id}
+                  whileHover={{}}
+                  className="overflow-hidden rounded-lg shadow-sm mb-2 w-[80%]"
+                >
+                  <div className="relative aspect-[16/9]">
+                    {activeVideo === project.id ? (
+                      <iframe
+                        src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowFullScreen
+                        className="absolute top-0 left-0 w-full h-full border-0"
+                        title={project.title}
+                      ></iframe>
+                    ) : (
+                      <button 
+                        onClick={() => handleVideoClick(project.id)}
+                        className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
+                      >
+                        <Image
+                          src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      </button>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex flex-col items-start w-1/2 p-0">
+              {projects.slice(3, 6).map((project) => (
+                <motion.div
+                  key={project.id}
+                  whileHover={{}}
+                  className="overflow-hidden rounded-lg shadow-sm mb-2 w-[80%]"
+                >
+                  <div className="relative aspect-[16/9]">
+                    {activeVideo === project.id ? (
+                      <iframe
+                        src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowFullScreen
+                        className="absolute top-0 left-0 w-full h-full border-0"
+                        title={project.title}
+                      ></iframe>
+                    ) : (
+                      <button 
+                        onClick={() => handleVideoClick(project.id)}
+                        className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
+                      >
+                        <Image
+                          src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      </button>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
           
           {/* Copyright line */}
-          <div className="pt-4 text-center text-[#345a7c]/80 text-xs">
+          <div className="pt-1 pb-2 mt-auto text-center text-[#345a7c]/80 text-[10px] md:text-xs">
             Designed by Roy Peker © 2025. All Rights Reserved
           </div>
         </div>
