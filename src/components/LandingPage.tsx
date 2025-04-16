@@ -294,9 +294,9 @@ const LandingPage = () => {
     <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
       <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4">
-        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 2xl:pt-24" style={{paddingRight: 0, gap: '4px'}}>
+        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-28 2xl:pt-24" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-3 xl:mb-4 w-full pr-4 md:pr-8">
+          <div className="flex items-center m-0 p-0 w-full pr-4 md:pr-8">
             <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[600px] xl:w-[680px] 2xl:w-[680px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[235px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
