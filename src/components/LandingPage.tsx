@@ -294,7 +294,7 @@ const LandingPage = () => {
     <div className={`h-screen overflow-hidden flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
       <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4">
-        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 2xl:pt-24" style={{paddingRight: 0, gap: '4px'}}>
+        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 xl:pt-4 2xl:pt-16" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-3 xl:mb-4 w-full pr-4 md:pr-8">
             <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[600px] xl:w-[680px] 2xl:w-[680px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[235px] flex-shrink-0 p-0 m-0">
@@ -362,7 +362,7 @@ const LandingPage = () => {
       {/* Right side - Cream background with projects */}
       <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col">
         <div className="w-full h-full flex flex-col p-0 items-center">
-          <div className="flex w-full max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-8 lg:px-10 xl:px-12 mx-0 space-x-3 sm:space-x-4 lg:space-x-5 xl:space-x-6 justify-center pt-8 md:pt-28 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
+          <div className="flex w-full max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-8 lg:px-10 xl:px-12 mx-0 space-x-3 sm:space-x-4 lg:space-x-5 xl:space-x-6 justify-center pt-8 md:pt-16 xl:pt-16 2xl:pt-16 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
             <div className="flex flex-col items-end w-1/2 p-0">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
