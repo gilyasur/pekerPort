@@ -297,7 +297,7 @@ const LandingPage = () => {
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start" style={{paddingRight: 0, gap: '4px', marginTop: '20px'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-1 w-full pr-4 md:pr-8">
-            <div className="relative w-[280px] xs:w-[320px] sm:w-[380px] md:w-[420px] lg:w-[520px] h-[100px] xs:h-[120px] sm:h-[130px] md:h-[150px] lg:h-[180px] flex-shrink-0 p-0 m-0">
+            <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[520px] xl:w-[600px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[210px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v002_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -311,7 +311,7 @@ const LandingPage = () => {
 
           {/* Greeting header */}
           <div className="mb-2 pl-4 sm:pl-8 md:pl-10">
-            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-3xl font-bold">Hi! I'm Roy!</h1>
+            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
@@ -369,6 +369,7 @@ const LandingPage = () => {
                   key={project.id}
                   whileHover={{}}
                   className="overflow-hidden rounded-lg shadow-sm mb-1 w-[80%] max-w-xs"
+                  style={{ width: 'calc(80% - 4px)', maxWidth: '280px' }}
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -403,6 +404,7 @@ const LandingPage = () => {
                   key={project.id}
                   whileHover={{}}
                   className="overflow-hidden rounded-lg shadow-sm mb-1 w-[80%] max-w-xs"
+                  style={{ width: 'calc(80% - 4px)', maxWidth: '280px' }}
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -432,7 +434,7 @@ const LandingPage = () => {
               ))}
               
               {/* Copyright line - aligned with right column */}
-              <div className="w-full mt-4 sm:mt-8 mb-1 sm:mb-2 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs whitespace-nowrap overflow-hidden">
+              <div className="w-[80%] mt-4 sm:mt-8 mb-1 sm:mb-2 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs whitespace-nowrap overflow-hidden">
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>
