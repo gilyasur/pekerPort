@@ -291,7 +291,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
+    <div className={`h-screen overflow-hidden flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
       <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4">
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 2xl:pt-24" style={{paddingRight: 0, gap: '4px'}}>
