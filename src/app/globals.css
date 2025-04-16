@@ -84,6 +84,6 @@ html {
 /* Reduce root font size on 2xl screens for scaling */
 @media (min-width: 1536px) {
   html {
-    font-size: 95%;
+    font-size: 90%;
   }
 }
