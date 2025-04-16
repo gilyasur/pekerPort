@@ -16,27 +16,27 @@ const socialLinks = [
   {
     title: 'LinkedIn',
     url: 'https://www.linkedin.com/in/roypeker/',
-    icon: <FaLinkedin size={20} />
+    icon: <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-9 2xl:h-9" />
   },
   {
     title: 'IMDb',
     url: 'https://www.imdb.com/name/nm6738899/?ref_=nv_sr_1',
-    icon: <FaImdb size={20} />
+    icon: <FaImdb className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-9 2xl:h-9" />
   },
   {
     title: 'Vimeo',
     url: 'https://vimeo.com/roypeker',
-    icon: <FaVimeoV size={20} />
+    icon: <FaVimeoV className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-9 2xl:h-9" />
   },
   {
     title: 'YouTube',
     url: 'https://www.youtube.com/channel/UCHjdQOEuDRcT-uKj2OKRr0A',
-    icon: <FaYoutube size={20} />
+    icon: <FaYoutube className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-9 2xl:h-9" />
   },
   {
     title: 'Instagram',
     url: 'https://www.instagram.com/roy.peker/',
-    icon: <FaInstagram size={20} />
+    icon: <FaInstagram className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 xl:w-9 xl:h-9 2xl:w-9 2xl:h-9" />
   }
 ];
 
@@ -293,11 +293,11 @@ const LandingPage = () => {
   return (
     <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2">
-        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start" style={{paddingRight: 0, gap: '4px', marginTop: '20px'}}>
+      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4">
+        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 2xl:pt-24" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-1 w-full pr-4 md:pr-8">
-            <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[520px] xl:w-[600px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[210px] flex-shrink-0 p-0 m-0">
+          <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-3 xl:mb-4 w-full pr-4 md:pr-8">
+            <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[600px] xl:w-[680px] 2xl:w-[720px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[250px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v002_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -310,45 +310,45 @@ const LandingPage = () => {
           </div>
 
           {/* Greeting header */}
-          <div className="mb-2 pl-4 sm:pl-8 md:pl-10">
-            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Hi! I'm Roy!</h1>
+          <div className="mb-2 lg:mb-3 xl:mb-3 2xl:mb-4 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14">
+            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
-          <div className="mb-3 pl-4 sm:pl-8 md:pl-10 pr-2 md:pr-4">
-            <p className="text-[#F2E3D5]/90 max-w-lg text-sm sm:text-base leading-tight sm:leading-relaxed">
-              <strong className="block mb-1">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
-              <span className="block mt-1 sm:mt-3">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
+          <div className="mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14 pr-2 md:pr-4">
+            <p className="text-[#F2E3D5]/90 max-w-lg lg:max-w-xl xl:max-w-2xl text-sm sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-xl leading-tight sm:leading-relaxed lg:leading-relaxed">
+              <strong className="block mb-1 lg:mb-2">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
+              <span className="block mt-1 sm:mt-3 lg:mt-4">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-start gap-2 md:gap-4 mt-2 mb-0 pl-4 sm:pl-8 md:pl-10" style={{width: '300px'}}>
-            <a 
-              href="/projects/pdf/next.pdf" 
-              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base"
+          <div className="flex justify-start gap-2 md:gap-4 lg:gap-4 xl:gap-5 mt-2 mb-0 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
+            <a
+              href="/projects/pdf/next.pdf"
+              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 lg:px-4 lg:py-1.5 xl:px-4 xl:py-1.5 2xl:px-5 2xl:py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
               download="Roy_Peker_CV.pdf"
             >
               Download CV
             </a>
-            <button 
+            <button
               onClick={handleOpenModal}
-              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base"
+              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 lg:px-4 lg:py-1.5 xl:px-4 xl:py-1.5 2xl:px-5 2xl:py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
             >
               Say hello
             </button>
           </div>
 
           {/* Social Links */}
-          <div className="mt-0 pl-4 sm:pl-8 md:pl-10" style={{width: '300px'}}>
-            <div className="flex justify-start gap-2 sm:gap-3.5 w-full">
+          <div className="mt-2 lg:mt-3 xl:mt-4 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
+            <div className="flex justify-start gap-2 sm:gap-3.5 lg:gap-4 xl:gap-5 w-full">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] md:w-[28px] md:h-[28px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
+                  className="flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
                   title={link.title}
                 >
                   {link.icon}
@@ -362,14 +362,13 @@ const LandingPage = () => {
       {/* Right side - Cream background with projects */}
       <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col">
         <div className="w-full h-full flex flex-col p-0 items-center">
-          <div className="flex w-full max-w-4xl px-4 sm:px-8 mx-0 space-x-2 sm:space-x-3 justify-center" style={{ paddingTop: '40px', paddingBottom: '20px' }}>
+          <div className="flex w-full max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-8 lg:px-10 xl:px-12 mx-0 space-x-3 sm:space-x-4 lg:space-x-5 xl:space-x-6 justify-center pt-8 md:pt-28 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
             <div className="flex flex-col items-end w-1/2 p-0">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-1 w-[80%] max-w-xs"
-                  style={{ width: 'calc(80% - 4px)', maxWidth: '280px' }}
+                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[800px] 2xl:max-w-[1440px]"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -403,8 +402,7 @@ const LandingPage = () => {
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-1 w-[80%] max-w-xs"
-                  style={{ width: 'calc(80% - 4px)', maxWidth: '280px' }}
+                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1240px]"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -434,7 +432,7 @@ const LandingPage = () => {
               ))}
               
               {/* Copyright line - aligned with right column */}
-              <div className="w-[80%] mt-4 sm:mt-8 mb-1 sm:mb-2 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs whitespace-nowrap overflow-hidden">
+              <div className="w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1240px] mt-4 sm:mt-8 lg:mt-8 xl:mt-10 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base overflow-hidden" >
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>
