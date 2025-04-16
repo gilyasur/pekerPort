@@ -297,7 +297,7 @@ const LandingPage = () => {
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 2xl:pt-24" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-3 xl:mb-4 w-full pr-4 md:pr-8">
-            <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[600px] xl:w-[680px] 2xl:w-[720px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[250px] flex-shrink-0 p-0 m-0">
+            <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[600px] xl:w-[680px] 2xl:w-[680px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[235px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v002_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -368,7 +368,7 @@ const LandingPage = () => {
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[800px] 2xl:max-w-[1440px]"
+                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[800px] 2xl:max-w-[1180px]"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -402,7 +402,7 @@ const LandingPage = () => {
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1240px]"
+                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1180px]"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -432,7 +432,7 @@ const LandingPage = () => {
               ))}
               
               {/* Copyright line - aligned with right column */}
-              <div className="w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1240px] mt-4 sm:mt-8 lg:mt-8 xl:mt-10 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base overflow-hidden" >
+              <div className="w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1180px] mt-4 sm:mt-8 lg:mt-8 xl:mt-10 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base whitespace-nowrap overflow-hidden" >
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>

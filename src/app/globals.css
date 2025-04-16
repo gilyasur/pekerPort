@@ -80,3 +80,10 @@ html {
 .overlap-footer {
   margin-bottom: calc(var(--footer-height) * -1);
 }
+
+/* Reduce root font size on 2xl screens for scaling */
+@media (min-width: 1536px) {
+  html {
+    font-size: 95%;
+  }
+}
