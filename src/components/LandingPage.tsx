@@ -291,13 +291,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={`h-screen flex flex-col md:flex-row overflow-auto ${montserrat.className}`}>
+    <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-4 overflow-auto">
-        <div className="w-full flex flex-col h-full p-1 md:p-2 lg:p-4 justify-center items-start" style={{paddingRight: 0, gap: '8px', marginTop: '-5vh'}}>
+      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2">
+        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start" style={{paddingRight: 0, gap: '4px', marginTop: '20px'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-1 w-full pr-4 md:pr-8">
-            <div className="relative w-[420px] md:w-[520px] h-[150px] md:h-[180px] flex-shrink-0 p-0 m-0">
+            <div className="relative w-[280px] xs:w-[320px] sm:w-[380px] md:w-[420px] lg:w-[520px] h-[100px] xs:h-[120px] sm:h-[130px] md:h-[150px] lg:h-[180px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v002_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -310,45 +310,45 @@ const LandingPage = () => {
           </div>
 
           {/* Greeting header */}
-          <div className="mb-4 pl-8 md:pl-10 mt-6">
-            <h1 className="text-[#F2E3D5] text-xl md:text-3xl font-bold">Hi! I'm Roy!</h1>
+          <div className="mb-2 pl-4 sm:pl-8 md:pl-10">
+            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-3xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
-          <div className="mb-8 pl-8 md:pl-10 pr-2 md:pr-4">
-            <p className="text-[#F2E3D5]/90 max-w-lg text-base md:text-base leading-relaxed">
-              <strong className="block mb-2">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
-              <span className="block mt-3">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
+          <div className="mb-3 pl-4 sm:pl-8 md:pl-10 pr-2 md:pr-4">
+            <p className="text-[#F2E3D5]/90 max-w-lg text-sm sm:text-base leading-tight sm:leading-relaxed">
+              <strong className="block mb-1">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
+              <span className="block mt-1 sm:mt-3">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-start gap-2 md:gap-4 mt-4 mb-0 pl-8 md:pl-10" style={{width: '300px'}}>
+          <div className="flex justify-start gap-2 md:gap-4 mt-2 mb-0 pl-4 sm:pl-8 md:pl-10" style={{width: '300px'}}>
             <a 
               href="/projects/pdf/next.pdf" 
-              className="bg-[#FF8080] text-white px-2 py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-base"
+              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base"
               download="Roy_Peker_CV.pdf"
             >
               Download CV
             </a>
             <button 
               onClick={handleOpenModal}
-              className="bg-[#FF8080] text-white px-2 py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-base"
+              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base"
             >
               Say hello
             </button>
           </div>
 
           {/* Social Links */}
-          <div className="mt-0 pl-8 md:pl-10" style={{width: '300px'}}>
-            <div className="flex justify-start gap-3.5 w-full">
+          <div className="mt-0 pl-4 sm:pl-8 md:pl-10" style={{width: '300px'}}>
+            <div className="flex justify-start gap-2 sm:gap-3.5 w-full">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[24px] h-[24px] md:w-[28px] md:h-[28px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
+                  className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] md:w-[28px] md:h-[28px] flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
                   title={link.title}
                 >
                   {link.icon}
@@ -360,15 +360,15 @@ const LandingPage = () => {
       </div>
 
       {/* Right side - Cream background with projects */}
-      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-auto">
-        <div className="w-full h-full flex flex-col p-0 justify-center">
-          <div className="flex w-full px-8 mx-0 space-x-3">
+      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col">
+        <div className="w-full h-full flex flex-col p-0 items-center">
+          <div className="flex w-full max-w-4xl px-4 sm:px-8 mx-0 space-x-2 sm:space-x-3 justify-center" style={{ paddingTop: '40px', paddingBottom: '20px' }}>
             <div className="flex flex-col items-end w-1/2 p-0">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-2 w-[80%]"
+                  className="overflow-hidden rounded-lg shadow-sm mb-1 w-[80%] max-w-xs"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -402,7 +402,7 @@ const LandingPage = () => {
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-2 w-[80%]"
+                  className="overflow-hidden rounded-lg shadow-sm mb-1 w-[80%] max-w-xs"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -432,7 +432,7 @@ const LandingPage = () => {
               ))}
               
               {/* Copyright line - aligned with right column */}
-              <div className="w-[80%] mt-8 mb-2 text-right text-[#345a7c]/80 text-[10px] md:text-xs">
+              <div className="w-full mt-4 sm:mt-8 mb-1 sm:mb-2 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs whitespace-nowrap overflow-hidden">
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>
