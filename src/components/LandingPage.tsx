@@ -362,13 +362,16 @@ const LandingPage = () => {
       {/* Right side - Cream background with projects */}
       <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col">
         <div className="w-full h-full flex flex-col p-0 items-center">
+          {/* Restore original container with two columns */}
           <div className="flex w-full max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-8 lg:px-10 xl:px-12 mx-0 space-x-3 sm:space-x-4 lg:space-x-5 xl:space-x-6 justify-center pt-8 md:pt-16 xl:pt-16 2xl:pt-16 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
-            <div className="flex flex-col items-end w-1/2 p-0">
+            {/* Left column of projects (align items end) */}
+            <div className="flex flex-col items-end w-1/2 p-0 space-y-1 md:space-y-1.5 lg:space-y-2 xl:space-y-2 2xl:space-y-2.5">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1180px]"
+                  // Make project item take full width of its column
+                  className="overflow-hidden rounded-lg shadow-sm w-full" 
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -382,27 +385,32 @@ const LandingPage = () => {
                     ) : (
                       <button 
                         onClick={() => handleVideoClick(project.id)}
-                        className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
+                        className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                       >
                         <Image
                           src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
                           alt={project.title}
                           fill
-                          className="object-cover"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
                           unoptimized
                         />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300">
+                          <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
                       </button>
                     )}
                   </div>
                 </motion.div>
               ))}
             </div>
-            <div className="flex flex-col items-start w-1/2 p-0">
+            {/* Right column of projects (align items start) */}
+            <div className="flex flex-col items-start w-1/2 p-0 space-y-1 md:space-y-1.5 lg:space-y-2 xl:space-y-2 2xl:space-y-2.5">
               {projects.slice(3, 6).map((project) => (
                 <motion.div
                   key={project.id}
                   whileHover={{}}
-                  className="overflow-hidden rounded-lg shadow-sm mb-1 md:mb-1.5 lg:mb-2 xl:mb-2 2xl:mb-2.5 w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1180px]"
+                  // Make project item take full width of its column
+                  className="overflow-hidden rounded-lg shadow-sm w-full"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -416,15 +424,18 @@ const LandingPage = () => {
                     ) : (
                       <button 
                         onClick={() => handleVideoClick(project.id)}
-                        className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
+                        className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                       >
                         <Image
                           src={`/For_Gilo/Footage/Covers/${project.thumbnail.split('/').pop()}`}
                           alt={project.title}
                           fill
-                          className="object-cover"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
                           unoptimized
                         />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300">
+                          <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
                       </button>
                     )}
                   </div>
@@ -432,7 +443,7 @@ const LandingPage = () => {
               ))}
               
               {/* Copyright line - aligned with right column */}
-              <div className="w-[80%] lg:max-w-[340px] xl:max-w-[360px] 2xl:max-w-[1180px] mt-4 sm:mt-8 lg:mt-8 xl:mt-10 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base whitespace-nowrap overflow-hidden" >
+              <div className="w-full mt-4 sm:mt-8 lg:mt-8 xl:mt-10 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base whitespace-nowrap overflow-hidden" >
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>
