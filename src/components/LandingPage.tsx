@@ -180,6 +180,19 @@ const LandingPage = () => {
     setIsBrowser(true);
   }, []);
 
+  // Adding resize listener to handle responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      // Close any active video when screen size changes significantly
+      if (activeVideo !== null) {
+        setActiveVideo(null);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [activeVideo]);
+
   const handleVideoClick = (id: number) => {
     setActiveVideo(activeVideo === id ? null : id);
   };
@@ -291,13 +304,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={`h-screen overflow-hidden flex flex-col md:flex-row ${montserrat.className}`}>
+    <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4">
+      <div className="w-full md:w-[40%] lg:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4 relative">
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 xl:pt-4 2xl:pt-16" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-3 xl:mb-4 w-full pr-4 md:pr-8">
-            <div className="relative w-[320px] xs:w-[360px] sm:w-[400px] md:w-[420px] lg:w-[600px] xl:w-[680px] 2xl:w-[680px] h-[120px] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[235px] flex-shrink-0 p-0 m-0">
+            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-[90%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[235px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -326,29 +339,29 @@ const LandingPage = () => {
           <div className="flex justify-start gap-2 md:gap-4 lg:gap-4 xl:gap-5 mt-2 mb-0 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
             <a
               href="/projects/pdf/next.pdf"
-              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 lg:px-4 lg:py-1.5 xl:px-4 xl:py-1.5 2xl:px-5 2xl:py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
+              className="bg-[#FF8080] text-white px-4 py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
               download="Roy_Peker_CV.pdf"
             >
               Download CV
             </a>
             <button
               onClick={handleOpenModal}
-              className="bg-[#FF8080] text-white px-2 py-0.5 sm:py-1 md:px-3 md:py-1 lg:px-4 lg:py-1.5 xl:px-4 xl:py-1.5 2xl:px-5 2xl:py-2 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
+              className="bg-[#FF8080] text-white px-4 py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
             >
               Say hello
             </button>
           </div>
 
           {/* Social Links */}
-          <div className="mt-2 lg:mt-3 xl:mt-4 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
-            <div className="flex justify-start gap-2 sm:gap-3.5 lg:gap-4 xl:gap-5 w-full">
+          <div className="mt-4 lg:mt-6 xl:mt-8 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
+            <div className="flex justify-start gap-3 sm:gap-4 lg:gap-5 xl:gap-6 w-full">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors"
+                  className="flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors duration-300"
                   title={link.title}
                 >
                   {link.icon}
@@ -356,22 +369,27 @@ const LandingPage = () => {
               ))}
             </div>
           </div>
+          
+          {/* Mobile-only copyright */}
+          <div className="md:hidden w-full mt-8 pl-4 text-[#F2E3D5]/60 text-[10px] sm:text-xs">
+            Designed by Roy Peker © 2025. All Rights Reserved
+          </div>
         </div>
       </div>
 
       {/* Right side - Cream background with projects */}
-      <div className="w-full md:w-[60%] bg-[#F2E3D5] p-0 flex flex-col">
+      <div className="w-full md:w-[60%] lg:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-y-auto">
         <div className="w-full h-full flex flex-col p-0 items-center">
-          {/* Restore original container with two columns */}
-          <div className="flex w-full max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-8 lg:px-10 xl:px-12 mx-0 space-x-3 sm:space-x-4 lg:space-x-5 xl:space-x-6 justify-center pt-8 md:pt-16 xl:pt-16 2xl:pt-16 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
-            {/* Left column of projects (align items end) */}
-            <div className="flex flex-col items-end w-1/2 p-0 space-y-1 md:space-y-1.5 lg:space-y-2 xl:space-y-2 2xl:space-y-2.5">
+          {/* Adjusted container with responsive columns */}
+          <div className="flex flex-col md:flex-row w-full max-w-[95vw] md:max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 mx-auto md:mx-0 md:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6 justify-center pt-6 md:pt-14 lg:pt-16 xl:pt-18 2xl:pt-20 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
+            {/* Left column of projects - stacks vertically on mobile */}
+            <div className="flex flex-col items-center md:items-end w-full md:w-1/2 p-0 space-y-2 md:space-y-2 lg:space-y-2.5 xl:space-y-3 2xl:space-y-4 mb-2 md:mb-0">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
                   key={project.id}
-                  whileHover={{}}
-                  // Make project item take full width of its column
-                  className="overflow-hidden rounded-lg shadow-sm w-full" 
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden rounded-lg shadow-md w-full md:w-[95%] lg:w-[95%] xl:w-[95%]" 
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -380,7 +398,7 @@ const LandingPage = () => {
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowFullScreen
                         className="absolute top-0 left-0 w-full h-full border-0"
-                        title={project.title}
+                        title={project.title} 
                       ></iframe>
                     ) : (
                       <button 
@@ -396,6 +414,10 @@ const LandingPage = () => {
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300">
                           <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </div>
+                        {/* Project title overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+
                         </div>
                       </button>
                     )}
@@ -403,14 +425,14 @@ const LandingPage = () => {
                 </motion.div>
               ))}
             </div>
-            {/* Right column of projects (align items start) */}
-            <div className="flex flex-col items-start w-1/2 p-0 space-y-1 md:space-y-1.5 lg:space-y-2 xl:space-y-2 2xl:space-y-2.5">
+            {/* Right column of projects - stacks vertically on mobile */}
+            <div className="flex flex-col items-center md:items-start w-full md:w-1/2 p-0 space-y-2 md:space-y-2 lg:space-y-2.5 xl:space-y-3 2xl:space-y-4">
               {projects.slice(3, 6).map((project) => (
                 <motion.div
                   key={project.id}
-                  whileHover={{}}
-                  // Make project item take full width of its column
-                  className="overflow-hidden rounded-lg shadow-sm w-full"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden rounded-lg shadow-md w-full md:w-[95%] lg:w-[95%] xl:w-[95%]"
                 >
                   <div className="relative aspect-[16/9]">
                     {activeVideo === project.id ? (
@@ -436,14 +458,18 @@ const LandingPage = () => {
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300">
                           <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
+                        {/* Project title overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+
+                        </div>
                       </button>
                     )}
                   </div>
                 </motion.div>
               ))}
               
-              {/* Copyright line - aligned with right column */}
-              <div className="w-full mt-4 sm:mt-8 lg:mt-8 xl:mt-10 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[8px] sm:text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base whitespace-nowrap overflow-hidden" >
+              {/* Copyright line - desktop only, hidden on mobile */}
+              <div className="hidden md:block w-full mt-4 lg:mt-6 xl:mt-8 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base whitespace-nowrap overflow-hidden" >
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>
