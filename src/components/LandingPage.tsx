@@ -304,7 +304,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
+    <div className={`h-screen overflow-hidden flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
       <div className="w-full md:w-[40%] lg:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-2.5 xl:p-3.5 2xl:p-3.5 relative">
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-12 lg:pt-12 xl:pt-3.5 2xl:pt-14" style={{paddingRight: 0, gap: '4px'}}>
@@ -380,7 +380,7 @@ const LandingPage = () => {
       </div>
 
       {/* Right side - Cream background with projects */}
-      <div className="w-full md:w-[60%] lg:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-y-auto">
+      <div className="w-full md:w-[60%] lg:w-[60%] bg-[#F2E3D5] p-0 flex flex-col h-full">
         <div className="w-full h-full flex flex-col p-0 items-center">
           {/* Adjusted container with responsive columns */}
           <div className="flex flex-col md:flex-row w-full max-w-[95vw] md:max-w-5xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 2xl:px-10 mx-auto md:mx-0 md:space-x-3 lg:space-x-3 xl:space-x-4 2xl:space-x-5 justify-center pt-6 md:pt-14 lg:pt-14 xl:pt-16 2xl:pt-18 pb-4 md:pb-8 lg:pb-8 xl:pb-10 2xl:pb-10">
