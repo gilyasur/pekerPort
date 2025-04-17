@@ -310,7 +310,7 @@ const LandingPage = () => {
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-12 lg:pt-12 xl:pt-3.5 2xl:pt-14" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
           <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-2.5 xl:mb-3.5 2xl:mb-3.5 w-full pr-4 md:pr-8">
-            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[85%] xl:w-[85%] 2xl:w-[85%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] 2xl:h-[200px] flex-shrink-0 p-0 m-0">
+            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[85%] xl:w-[85%] 2xl:w-[85%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] 2xl:h-[200px] flex-shrink-0 p-0 m-0 -mt-4 md:-mt-6 lg:-mt-8 xl:-mt-10 2xl:-mt-12">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                 alt="Roy Peker Logo and Name"
