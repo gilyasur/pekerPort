@@ -309,8 +309,8 @@ const LandingPage = () => {
       <div className="w-full md:w-[40%] lg:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-2.5 xl:p-3.5 2xl:p-3.5 relative">
         <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-12 lg:pt-12 xl:pt-3.5 2xl:pt-14" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-2.5 xl:mb-3.5 2xl:mb-3.5 w-full pr-4 md:pr-8">
-            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[85%] xl:w-[85%] 2xl:w-[85%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] 2xl:h-[200px] flex-shrink-0 p-0 m-0 -mt-4 md:-mt-6 lg:-mt-8 xl:-mt-10 2xl:-mt-12">
+          <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-2.5 xl:mb-2 2xl:mb-2 w-full pr-4 md:pr-8">
+            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[85%] xl:w-[85%] 2xl:w-[85%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[180px] 2xl:h-[180px] flex-shrink-0 p-0 m-0 -mt-4 md:-mt-6 lg:-mt-8 xl:-mt-8 2xl:-mt-8">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -323,12 +323,12 @@ const LandingPage = () => {
           </div>
 
           {/* Greeting header */}
-          <div className="mb-2 lg:mb-2.5 xl:mb-2.5 2xl:mb-3.5 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12">
+          <div className="mb-2 lg:mb-2 xl:mb-2 2xl:mb-2 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12">
             <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
-          <div className="mb-3 lg:mb-3.5 xl:mb-3.5 2xl:mb-4 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12 pr-2 md:pr-4">
+          <div className="mb-3 lg:mb-3 xl:mb-3 2xl:mb-3 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12 pr-2 md:pr-4">
             <p className="text-[#F2E3D5]/90 max-w-lg lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl text-sm sm:text-base md:text-base lg:text-sm xl:text-base 2xl:text-lg leading-tight sm:leading-relaxed lg:leading-relaxed">
               <strong className="block mb-1 lg:mb-1.5 xl:mb-1.5 2xl:mb-2">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
               <span className="block mt-1 sm:mt-3 lg:mt-3.5 xl:mt-3.5 2xl:mt-4">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>

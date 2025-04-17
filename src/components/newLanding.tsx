@@ -221,12 +221,12 @@ const NewLanding = () => {
     <div className={`h-screen overflow-hidden ${montserrat.className}`}>
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
-        <div className="w-full md:w-[45%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-12 lg:p-16">
+        <div className="w-full md:w-[45%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
           <div className="flex flex-col h-full justify-center -mt-6">
             {/* Content container with proper spacing */}
-            <div className="space-y-8 md:space-y-10 pl-4 md:pl-6 lg:pl-8">
+            <div className="space-y-6 md:space-y-8 lg:space-y-10 pl-4 md:pl-6 lg:pl-8">
               {/* Logo */}
-              <div className="relative w-[80%] h-[120px] md:h-[140px] lg:h-[200px] xl:h-[320px] -mt-8 md:-mt-10 lg:-mt-12">
+              <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] -mt-8 md:-mt-10 lg:-mt-12">
                 <Image
                   src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                   alt="Roy Peker Logo"
@@ -238,7 +238,7 @@ const NewLanding = () => {
               </div>
               
               {/* Intro text */}
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4 pl-4 md:pl-6 lg:pl-8">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">Hi! I'm Roy!</h1>
                 <div className="text-[#F2E3D5]/90 text-base md:text-lg max-w-md space-y-4">
                   <p className="font-bold">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</p>
@@ -247,7 +247,7 @@ const NewLanding = () => {
               </div>
               
               {/* Call to action buttons */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 pl-4 md:pl-6 lg:pl-8">
                 <a
                   href="/projects/pdf/next.pdf"
                   className="bg-[#FF8080] hover:bg-[#FFB868] transition-colors duration-300 text-white px-6 py-3 rounded-full font-medium"
@@ -264,7 +264,7 @@ const NewLanding = () => {
               </div>
               
               {/* Social links moved into main content area */}
-              <div className="flex space-x-5">
+              <div className="flex space-x-5 pl-4 md:pl-6 lg:pl-8">
                 {socialLinks.map((link) => (
                   <a
                     key={link.title}
@@ -279,7 +279,7 @@ const NewLanding = () => {
                     })}
                   </a>
                 ))}
-              </div>
+              </div> 
             </div>
             
             {/* Copyright mobile only at the bottom of screen */}
