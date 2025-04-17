@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useSection } from '@/context/SectionContext';
 import { FaLinkedin, FaImdb, FaVimeoV, FaYoutube, FaInstagram } from 'react-icons/fa';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaPlay } from 'react-icons/fa';
 import { Montserrat } from 'next/font/google';
 import { createPortal } from 'react-dom';
@@ -306,11 +306,11 @@ const LandingPage = () => {
   return (
     <div className={`min-h-screen flex flex-col md:flex-row ${montserrat.className}`}>
       {/* Left side - Dark blue background */}
-      <div className="w-full md:w-[40%] lg:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-3 xl:p-4 relative">
-        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-14 xl:pt-4 2xl:pt-16" style={{paddingRight: 0, gap: '4px'}}>
+      <div className="w-full md:w-[40%] lg:w-[40%] bg-[#32506C] flex flex-col p-1 md:p-2 lg:p-2.5 xl:p-3.5 2xl:p-3.5 relative">
+        <div className="w-full flex flex-col h-full p-1 md:p-2 items-start pt-8 md:pt-12 lg:pt-12 xl:pt-3.5 2xl:pt-14" style={{paddingRight: 0, gap: '4px'}}>
           {/* Logo and Name - Aligned to the left at top */}
-          <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-3 xl:mb-4 w-full pr-4 md:pr-8">
-            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[90%] xl:w-[90%] 2xl:w-[90%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[210px] xl:h-[235px] 2xl:h-[235px] flex-shrink-0 p-0 m-0">
+          <div className="flex items-center m-0 p-0 mb-2 md:mb-3 lg:mb-2.5 xl:mb-3.5 2xl:mb-3.5 w-full pr-4 md:pr-8">
+            <div className="relative w-[70vw] xs:w-[360px] sm:w-[400px] md:w-[90%] lg:w-[85%] xl:w-[85%] 2xl:w-[85%] h-[20vw] xs:h-[130px] sm:h-[140px] md:h-[150px] lg:h-[180px] xl:h-[200px] 2xl:h-[200px] flex-shrink-0 p-0 m-0">
               <Image
                 src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                 alt="Roy Peker Logo and Name"
@@ -323,38 +323,38 @@ const LandingPage = () => {
           </div>
 
           {/* Greeting header */}
-          <div className="mb-2 lg:mb-3 xl:mb-3 2xl:mb-4 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14">
-            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-5xl font-bold">Hi! I'm Roy!</h1>
+          <div className="mb-2 lg:mb-2.5 xl:mb-2.5 2xl:mb-3.5 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12">
+            <h1 className="text-[#F2E3D5] text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold">Hi! I'm Roy!</h1>
           </div>
 
           {/* Description text */}
-          <div className="mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14 pr-2 md:pr-4">
-            <p className="text-[#F2E3D5]/90 max-w-lg lg:max-w-xl xl:max-w-2xl text-sm sm:text-base md:text-base lg:text-base xl:text-base 2xl:text-xl leading-tight sm:leading-relaxed lg:leading-relaxed">
-              <strong className="block mb-1 lg:mb-2">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
-              <span className="block mt-1 sm:mt-3 lg:mt-4">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
+          <div className="mb-3 lg:mb-3.5 xl:mb-3.5 2xl:mb-4 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12 pr-2 md:pr-4">
+            <p className="text-[#F2E3D5]/90 max-w-lg lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl text-sm sm:text-base md:text-base lg:text-sm xl:text-base 2xl:text-lg leading-tight sm:leading-relaxed lg:leading-relaxed">
+              <strong className="block mb-1 lg:mb-1.5 xl:mb-1.5 2xl:mb-2">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</strong>
+              <span className="block mt-1 sm:mt-3 lg:mt-3.5 xl:mt-3.5 2xl:mt-4">Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</span>
             </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-start gap-2 md:gap-4 lg:gap-4 xl:gap-5 mt-2 mb-0 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
+          <div className="flex justify-start gap-2 md:gap-4 lg:gap-3.5 xl:gap-4 2xl:gap-4.5 mt-2 mb-0 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12" style={{width: 'auto'}}>
             <a
               href="/projects/pdf/next.pdf"
-              className="bg-[#FF8080] text-white px-4 py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
+              className="bg-[#FF8080] text-white px-4 py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4.5 xl:py-2 2xl:px-5 2xl:py-2.5 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-base xl:text-base 2xl:text-lg"
               download="Roy_Peker_CV.pdf"
             >
               Download CV
             </a>
             <button
               onClick={handleOpenModal}
-              className="bg-[#FF8080] text-white px-4 py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-lg xl:text-lg 2xl:text-xl"
+              className="bg-[#FF8080] text-white px-4 py-2 md:px-4 md:py-2 lg:px-4 lg:py-2 xl:px-4.5 xl:py-2 2xl:px-5 2xl:py-2.5 rounded-full hover:bg-[#FFB868]/90 transition-colors text-sm sm:text-base lg:text-base xl:text-base 2xl:text-lg"
             >
               Say hello
             </button>
           </div>
 
           {/* Social Links */}
-          <div className="mt-4 lg:mt-6 xl:mt-8 pl-4 sm:pl-8 md:pl-10 lg:pl-12 xl:pl-14" style={{width: 'auto'}}>
-            <div className="flex justify-start gap-3 sm:gap-4 lg:gap-5 xl:gap-6 w-full">
+          <div className="mt-4 lg:mt-5 xl:mt-7 2xl:mt-7 pl-4 sm:pl-8 md:pl-10 lg:pl-10 xl:pl-12 2xl:pl-12" style={{width: 'auto'}}>
+            <div className="flex justify-start gap-3 sm:gap-4 lg:gap-4 xl:gap-5 2xl:gap-5 w-full">
               {socialLinks.map((link) => (
                 <a
                   key={link.title}
@@ -364,7 +364,9 @@ const LandingPage = () => {
                   className="flex items-center justify-center rounded-full bg-[#32506C] text-[#f2e3d5] hover:text-[#ffb868] transition-colors duration-300"
                   title={link.title}
                 >
-                  {link.icon}
+                  {React.cloneElement(link.icon, {
+                    className: `w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-7 lg:h-7 xl:w-8 xl:h-8 2xl:w-8 2xl:h-8`
+                  })}
                 </a>
               ))}
             </div>
@@ -381,9 +383,9 @@ const LandingPage = () => {
       <div className="w-full md:w-[60%] lg:w-[60%] bg-[#F2E3D5] p-0 flex flex-col overflow-y-auto">
         <div className="w-full h-full flex flex-col p-0 items-center">
           {/* Adjusted container with responsive columns */}
-          <div className="flex flex-col md:flex-row w-full max-w-[95vw] md:max-w-5xl lg:max-w-5xl xl:max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 mx-auto md:mx-0 md:space-x-3 lg:space-x-4 xl:space-x-5 2xl:space-x-6 justify-center pt-6 md:pt-14 lg:pt-16 xl:pt-18 2xl:pt-20 pb-4 md:pb-8 lg:pb-10 xl:pb-12">
+          <div className="flex flex-col md:flex-row w-full max-w-[95vw] md:max-w-5xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 2xl:px-10 mx-auto md:mx-0 md:space-x-3 lg:space-x-3 xl:space-x-4 2xl:space-x-5 justify-center pt-6 md:pt-14 lg:pt-14 xl:pt-16 2xl:pt-18 pb-4 md:pb-8 lg:pb-8 xl:pb-10 2xl:pb-10">
             {/* Left column of projects - stacks vertically on mobile */}
-            <div className="flex flex-col items-center md:items-end w-full md:w-1/2 p-0 space-y-2 md:space-y-2 lg:space-y-2.5 xl:space-y-3 2xl:space-y-4 mb-2 md:mb-0">
+            <div className="flex flex-col items-center md:items-end w-full md:w-1/2 p-0 space-y-2 md:space-y-2 lg:space-y-2 xl:space-y-2.5 2xl:space-y-3.5 mb-2 md:mb-0">
               {projects.slice(0, 3).map((project) => (
                 <motion.div
                   key={project.id}
@@ -398,7 +400,7 @@ const LandingPage = () => {
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowFullScreen
                         className="absolute top-0 left-0 w-full h-full border-0"
-                        title={project.title} 
+                        title={project.title}
                       ></iframe>
                     ) : (
                       <button 
@@ -413,11 +415,11 @@ const LandingPage = () => {
                           unoptimized
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300">
-                          <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl 2xl:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                         {/* Project title overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 lg:p-2.5 xl:p-2.5 2xl:p-3">
+                          
                         </div>
                       </button>
                     )}
@@ -426,7 +428,7 @@ const LandingPage = () => {
               ))}
             </div>
             {/* Right column of projects - stacks vertically on mobile */}
-            <div className="flex flex-col items-center md:items-start w-full md:w-1/2 p-0 space-y-2 md:space-y-2 lg:space-y-2.5 xl:space-y-3 2xl:space-y-4">
+            <div className="flex flex-col items-center md:items-start w-full md:w-1/2 p-0 space-y-2 md:space-y-2 lg:space-y-2 xl:space-y-2.5 2xl:space-y-3.5">
               {projects.slice(3, 6).map((project) => (
                 <motion.div
                   key={project.id}
@@ -456,11 +458,11 @@ const LandingPage = () => {
                           unoptimized
                         />
                         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300">
-                          <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <FaPlay className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-3xl 2xl:text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                         {/* Project title overlay */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 lg:p-2.5 xl:p-2.5 2xl:p-3">
+                          
                         </div>
                       </button>
                     )}
@@ -469,7 +471,7 @@ const LandingPage = () => {
               ))}
               
               {/* Copyright line - desktop only, hidden on mobile */}
-              <div className="hidden md:block w-full mt-4 lg:mt-6 xl:mt-8 mb-1 sm:mb-2 lg:mb-3 xl:mb-4 text-right text-[#345a7c]/80 text-[10px] md:text-xs lg:text-sm xl:text-sm 2xl:text-base whitespace-nowrap overflow-hidden" >
+              <div className="hidden md:block w-full mt-4 lg:mt-5 xl:mt-7 2xl:mt-7 mb-1 sm:mb-2 lg:mb-2.5 xl:mb-3 2xl:mb-3.5 text-right text-[#345a7c]/80 text-[10px] md:text-xs lg:text-xs xl:text-sm 2xl:text-sm whitespace-nowrap overflow-hidden" >
                 Designed by Roy Peker © 2025. All Rights Reserved
               </div>
             </div>
