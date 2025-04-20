@@ -223,7 +223,7 @@ const NewLanding = () => {
     <div className={`h-screen overflow-hidden ${montserrat.className}`}>
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
-        <div className="w-full md:w-[45%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
+        <div className="w-full md:w-[40%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
           <div className="flex flex-col h-full justify-center -mt-6">
             {/* Content container with proper spacing */}
             <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 md:pl-6 lg:pl-8">
@@ -292,7 +292,7 @@ const NewLanding = () => {
         </div>
 
         {/* Right side - Projects/Portfolio section */}
-        <div className="hidden md:block w-[55%] bg-[#F2E3D5] relative">
+        <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
           <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10">
             <div className="w-full max-w-4xl">
               {/* Two column grid for projects */}
