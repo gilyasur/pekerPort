@@ -224,7 +224,7 @@ const NewLanding = () => {
         <div className="w-full md:w-[45%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
           <div className="flex flex-col h-full justify-center -mt-2">
             {/* Content container with proper spacing */}
-            <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 md:pl-6 lg:pl-8">
+            <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 pl-6 lg:pl-8">
               {/* Logo */}
               <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] -mt-8 md:-mt-10 lg:-mt-12">
                 <Image
