@@ -108,12 +108,14 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* This is the overlay - kept at 70% opacity as requested */}
       <div className="absolute inset-0 bg-black bg-opacity-70" onClick={onClose}></div>
-      <div 
-        className="relative bg-[#355c7d]/95 backdrop-blur-md rounded-xl p-6 w-full max-w-lg mx-4 shadow-2xl z-10 text-[#F2E3D5]"
+      {/* This is the modal content box - opacity changed to 80% */}
+      <div
+        className="relative bg-[#355c7d]/80 backdrop-blur-md rounded-xl p-6 w-full max-w-lg mx-4 shadow-2xl z-10 text-[#F2E3D5]" // Changed /95 to /80 here
         onClick={e => e.stopPropagation()}
       >
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
         >
@@ -150,7 +152,7 @@ const NewLanding = () => {
   useEffect(() => {
     setIsBrowser(true);
   }, []);
-  
+
   // Function to handle video clicks
   const handleVideoClick = (id: number) => {
     setActiveVideo(activeVideo === id ? null : id);
@@ -159,7 +161,7 @@ const NewLanding = () => {
   // Modal handlers
   const handleOpenModal = () => setShowContactModal(true);
   const handleCloseModal = () => setShowContactModal(false);
-  
+
   // Form handlers
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -168,22 +170,22 @@ const NewLanding = () => {
       'user_email': 'email',
       'message': 'message'
     };
-    
+
     const stateField = fieldMapping[name] || name;
     setFormData(prev => ({ ...prev, [stateField]: value }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     setIsSubmitting(true);
     setSubmitStatus(null);
-    
+
     // Replace with your actual EmailJS credentials
     const serviceId = 'service_958ibxe';
     const templateId = 'template_5gfc4zi';
     const publicKey = 'EMvss3sajXe2nwsjP';
-    
+
     if (formRef.current) {
       emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
         .then((result) => {
@@ -222,9 +224,9 @@ const NewLanding = () => {
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
         <div className="w-full md:w-[45%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
-          <div className="flex flex-col h-full justify-center -mt-2">
+          <div className="flex flex-col h-full justify-center -mt-6">
             {/* Content container with proper spacing */}
-            <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 pl-6 pl-8">
+            <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 md:pl-6 lg:pl-8">
               {/* Logo */}
               <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] -mt-8 md:-mt-10 lg:-mt-12">
                 <Image
@@ -236,16 +238,16 @@ const NewLanding = () => {
                   unoptimized
                 />
               </div>
-              
+
               {/* Intro text */}
               <div className="space-y-3 md:space-y-4 pl-4 md:pl-6 lg:pl-8">
-                <h1 className="text-3xl md:text-3xl lg:text-3xl font-bold">Hi! I'm Roy!</h1>
-                <div className="text-[#F2E3D5]/90 text-base md:text-md max-w-md space-y-4">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">Hi! I'm Roy!</h1>
+                <div className="text-[#F2E3D5]/90 text-base md:text-lg max-w-md space-y-4">
                   <p className="font-bold">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</p>
                   <p>Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</p>
                 </div>
               </div>
-              
+
               {/* Call to action buttons */}
               <div className="flex space-x-4 pl-4 md:pl-6 lg:pl-8">
                 <a
@@ -262,7 +264,7 @@ const NewLanding = () => {
                   Say Hello
                 </button>
               </div>
-              
+
               {/* Social links moved into main content area */}
               <div className="flex space-x-5 pl-4 md:pl-6 lg:pl-8">
                 {socialLinks.map((link) => (
@@ -279,16 +281,16 @@ const NewLanding = () => {
                     })}
                   </a>
                 ))}
-              </div> 
+              </div>
             </div>
-            
+
             {/* Copyright mobile only at the bottom of screen */}
             <div className="md:hidden mt-8 text-[#F2E3D5]/60 text-xs absolute bottom-4 left-8">
               © Roy Peker, 2025. All Rights Reserved
             </div>
           </div>
         </div>
-        
+
         {/* Right side - Projects/Portfolio section */}
         <div className="hidden md:block w-[55%] bg-[#F2E3D5] relative">
           <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10">
@@ -314,7 +316,7 @@ const NewLanding = () => {
                             title={project.title}
                           ></iframe>
                         ) : (
-                          <button 
+                          <button
                             onClick={() => handleVideoClick(project.id)}
                             className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                           >
@@ -361,7 +363,7 @@ const NewLanding = () => {
                             title={project.title}
                           ></iframe>
                         ) : (
-                          <button 
+                          <button
                             onClick={() => handleVideoClick(project.id)}
                             className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                           >
@@ -397,12 +399,12 @@ const NewLanding = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Mobile portfolio view */}
         <div className="md:hidden w-full bg-[#F2E3D5] p-4 overflow-y-auto">
           <div className="space-y-4">
             {projects.map((project) => (
-              <motion.div 
+              <motion.div
                 key={project.id}
                 whileHover={{ scale: 1.02 }}
                 className="relative rounded-lg overflow-hidden shadow-md"
@@ -417,7 +419,7 @@ const NewLanding = () => {
                       title={project.title}
                     ></iframe>
                   ) : (
-                    <button 
+                    <button
                       onClick={() => handleVideoClick(project.id)}
                       className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                     >
@@ -446,22 +448,22 @@ const NewLanding = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Contact Form Modal */}
       {isBrowser && (
         <Modal isOpen={showContactModal} onClose={handleCloseModal}>
           <h2 className="text-2xl font-bold mb-6 text-[#F2E3D5]">Let's Talk</h2>
-          
+
           {submitStatus && (
             <div className={`p-4 mb-6 rounded-md ${
-              submitStatus.success 
-                ? 'bg-green-500/20 text-green-100' 
+              submitStatus.success
+                ? 'bg-green-500/20 text-green-100'
                 : 'bg-red-500/20 text-red-100'
             }`}>
               {submitStatus.message}
             </div>
           )}
-          
+
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
