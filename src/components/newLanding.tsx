@@ -294,7 +294,7 @@ const NewLanding = () => {
         {/* Right side - Projects/Portfolio section */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
           <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10">
-            <div className="w-full max-w-6xl">
+            <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
                 {/* Left column projects - Updated to center content */}
