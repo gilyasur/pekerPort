@@ -222,7 +222,7 @@ const NewLanding = () => {
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
         <div className="w-full md:w-[45%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
-          <div className="flex flex-col h-full justify-center -mt-6">
+          <div className="flex flex-col h-full justify-center -mt-2">
             {/* Content container with proper spacing */}
             <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 md:pl-6 lg:pl-8">
               {/* Logo */}
@@ -239,8 +239,8 @@ const NewLanding = () => {
               
               {/* Intro text */}
               <div className="space-y-3 md:space-y-4 pl-4 md:pl-6 lg:pl-8">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">Hi! I'm Roy!</h1>
-                <div className="text-[#F2E3D5]/90 text-base md:text-lg max-w-md space-y-4">
+                <h1 className="text-3xl md:text-3xl lg:text-3xl font-bold">Hi! I'm Roy!</h1>
+                <div className="text-[#F2E3D5]/90 text-base md:text-md max-w-md space-y-4">
                   <p className="font-bold">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</p>
                   <p>Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</p>
                 </div>
