@@ -224,11 +224,11 @@ const NewLanding = () => {
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
         <div className="w-full md:w-[40%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
-          <div className="flex flex-col h-full justify-center -mt-6">
+          <div className="flex flex-col h-full justify-center -mt-0 md:-mt-0 lg:-mt-2 3xl:-mt-4">
             {/* Content container with proper spacing */}
-            <div className="space-y-6 md:space-y-6 lg:space-y-16 pl-4 md:pl-6 lg:pl-8">
+            <div className="space-y-6 md:space-y-8 lg:space-y-4 3xl:space-y-2 pl-4 md:pl-6 lg:pl-8">
               {/* Logo */}
-              <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] -mt-8 md:-mt-10 lg:-mt-12">
+              <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] 3xl:h-[300px] -mt-8 md:-mt-10 lg:-mt-12">
                 <Image
                   src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                   alt="Roy Peker Logo"
@@ -240,16 +240,16 @@ const NewLanding = () => {
               </div>
 
               {/* Intro text */}
-              <div className="space-y-3 md:space-y-4 pl-4 md:pl-6 lg:pl-8">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">Hi! I'm Roy!</h1>
-                <div className="text-[#F2E3D5]/90 text-base md:text-lg max-w-md space-y-4">
+              <div className="space-y-3 md:space-y-8 3xl:space-y-8 pl-4 md:pl-6 lg:pl-8 3xl:pl-14 ">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold " >Hi! I'm Roy!</h1>
+                <div className="text-[#F2E3D5]/90 text-base md:text-lg max-w-md space-y-8">
                   <p className="font-bold">Feel free to check out my work! Do you have a project in mind that needs help in telling the story using VFX?</p>
                   <p>Do not hesitate to reach out to me. I am always keen to hear regarding new & exciting projects to get involved with!</p>
                 </div>
               </div>
 
               {/* Call to action buttons */}
-              <div className="flex space-x-4 pl-4 md:pl-6 lg:pl-8">
+              <div className="flex space-x-4 pl-4 md:pl-6 lg:pl-8 3xl:pl-14 md:pt-8 lg:pt-12 xl:pt-16 3xl:pt-44">
                 <a
                   href="/projects/pdf/next.pdf"
                   className="bg-[#FF8080] hover:bg-[#FFB868] transition-colors duration-300 text-white px-6 py-3 rounded-full font-medium"
@@ -266,7 +266,7 @@ const NewLanding = () => {
               </div>
 
               {/* Social links moved into main content area */}
-              <div className="flex space-x-5 pl-4 md:pl-6 lg:pl-8">
+              <div className="flex space-x-5 pl-4 md:pl-6 lg:pl-8 3xl:pl-14">
                 {socialLinks.map((link) => (
                   <a
                     key={link.title}
