@@ -165,10 +165,10 @@ const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: ()
         {/* 16:9 aspect ratio container */}
         <div className="aspect-video w-full">
           <iframe
-            src={`https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+            src={`https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            className="w-full h-full rounded-lg"
+            className="w-full h-full rounded-lg "
             title="Video Player"
           ></iframe>
         </div>
@@ -406,7 +406,7 @@ const NewLanding = () => {
                         {activeVideo === project.id && project.videoUrl ? (
                           <iframe
                           // Added &muted=1 to the src URL
-                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
                           allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
                             className="absolute top-0 left-0 w-full h-full border-0"
@@ -462,7 +462,7 @@ const NewLanding = () => {
                          {activeVideo === project.id && project.videoUrl ? (
                           <iframe
                           // Added &muted=1 to the src URL
-                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
                           allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
                             className="absolute top-0 left-0 w-full h-full border-0"
@@ -528,7 +528,7 @@ const NewLanding = () => {
                   {activeVideo === project.id && project.videoUrl ? (
                     <iframe
                        // Added &muted=1 to the src URL
-                      src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+                      src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                       className="absolute top-0 left-0 w-full h-full border-0"
