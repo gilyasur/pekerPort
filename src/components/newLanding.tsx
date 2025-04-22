@@ -508,7 +508,7 @@ const NewLanding = () => {
               </div>
 
               {/* Copyright */}
-              <div className="mdlg:mt-16 xl:mt-16 3xl:mt-16 text-right text-[#32506C]/70 text-xs">
+              <div className="mdlg:mt-10 xl:mt-12 3xl:mt-12 text-right text-[#32506C]/70 text-xs">
                 © Roy Peker, 2025. All Rights Reserved
               </div>
             </div>
