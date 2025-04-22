@@ -95,12 +95,31 @@ interface ModalProps {
 const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   useEffect(() => {
     if (isOpen) {
+      // Preserve body scroll position before hiding
+      // document.body.dataset.scrollLock = window.scrollY.toString();
       document.body.style.overflow = 'hidden';
+      // document.body.style.position = 'fixed';
+      // document.body.style.top = `-${document.body.dataset.scrollLock}px`;
+      // document.body.style.width = '100%'; // Prevent layout shift from scrollbar disappearing
+
     } else {
+      // Restore body scroll position
+      // const scrollY = document.body.dataset.scrollLock ? parseInt(document.body.dataset.scrollLock, 10) : 0;
       document.body.style.overflow = 'unset';
+      // document.body.style.position = '';
+      // document.body.style.top = '';
+      // document.body.style.width = '';
+      // window.scrollTo(0, scrollY);
     }
+    // Cleanup function runs on unmount or when isOpen changes
     return () => {
       document.body.style.overflow = 'unset';
+      // document.body.style.position = '';
+      // document.body.style.top = '';
+      // document.body.style.width = '';
+      // const scrollY = document.body.dataset.scrollLock ? parseInt(document.body.dataset.scrollLock, 10) : 0;
+      // window.scrollTo(0, scrollY);
+      // delete document.body.dataset.scrollLock;
     };
   }, [isOpen]);
 
@@ -134,12 +153,31 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: () => void; videoId: string | null }) => {
   useEffect(() => {
     if (isOpen) {
+      // Preserve body scroll position before hiding
+      // document.body.dataset.scrollLock = window.scrollY.toString();
       document.body.style.overflow = 'hidden';
+      // document.body.style.position = 'fixed';
+      // document.body.style.top = `-${document.body.dataset.scrollLock}px`;
+      // document.body.style.width = '100%'; // Prevent layout shift from scrollbar disappearing
+
     } else {
+      // Restore body scroll position
+      // const scrollY = document.body.dataset.scrollLock ? parseInt(document.body.dataset.scrollLock, 10) : 0;
       document.body.style.overflow = 'unset';
+      // document.body.style.position = '';
+      // document.body.style.top = '';
+      // document.body.style.width = '';
+      // window.scrollTo(0, scrollY);
     }
+    // Cleanup function runs on unmount or when isOpen changes
     return () => {
       document.body.style.overflow = 'unset';
+      // document.body.style.position = '';
+      // document.body.style.top = '';
+      // document.body.style.width = '';
+      // const scrollY = document.body.dataset.scrollLock ? parseInt(document.body.dataset.scrollLock, 10) : 0;
+      // window.scrollTo(0, scrollY);
+      // delete document.body.dataset.scrollLock;
     };
   }, [isOpen]);
 
@@ -168,7 +206,7 @@ const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: ()
             src={`https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            className="w-full h-full border-0 outline-none" 
+            className="w-full h-full border-0 outline-none"
             title="Video Player"
             style={{ border: 'none', display: 'block' }}
           ></iframe>
@@ -216,7 +254,7 @@ const NewLanding = () => {
         setCurrentVideoId(videoId);
         setVideoModalOpen(true);
       } else {
-        // For mobile, keep the old behavior
+        // For mobile, keep the old behavior (embedding in the card)
         if (activeVideo === id) {
           setActiveVideo(null);
         } else {
@@ -306,11 +344,14 @@ const NewLanding = () => {
   };
 
   return (
-    <div className={`h-screen overflow-hidden ${montserrat.className}`}>
+    // Modified this line: Removed h-screen and overflow-hidden for mobile, keep for md+
+    <div className={`md:h-screen md:overflow-hidden ${montserrat.className}`}>
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
+        {/* This section's height will now be determined by its content on mobile */}
         <div className="w-full md:w-[40%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
           {/* Adjusted negative margin-top to control overall vertical position */}
+          {/* This div's height will be based on its content now */}
           <div className="flex flex-col h-full justify-center -mt-0 md:-mt-0 lg:-mt-14 3xl:-mt-4">
             {/* Content container with proper spacing */}
             {/* Used space-y for gap between main sections (logo, intro, buttons, social) */}
@@ -376,23 +417,24 @@ const NewLanding = () => {
             </div>
 
             {/* Copyright mobile only at the bottom of screen */}
-            {/* Note: This copyright is positioned absolutely, which can sometimes
-                 conflict with flex/grid layouts. It might be better placed
-                 statically in the mobile portfolio section instead. */}
-            <div className="md:hidden mt-8 text-[#F2E3D5]/60 text-xs absolute bottom-4 left-8">
+            {/* This absolute positioning might still cause issues if the left content is very tall on mobile.
+                Consider placing it statically *after* the social links for a cleaner flow on mobile.
+                For now, leaving it as is, but be aware. */}
+             <div className="md:hidden mt-8 text-[#F2E3D5]/60 text-xs absolute bottom-4 left-8">
               © Roy Peker, 2025. All Rights Reserved
             </div>
           </div>
         </div>
 
         {/* Right side - Projects/Portfolio section (hidden on md and up) */}
-        {/* NOTE: This div has hidden md:block, which means it's hidden on SMALLER screens */}
-        {/* and displayed as block on md and UP. The MOBILE section below it is hidden on md and UP.
-             This seems correct for showing the grid on desktop and list on mobile. */}
+        {/* Desktop view - This div now contributes to overall page height */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
+          {/* Inner container for spacing and centering content */}
+          {/* No overflow style needed here, content pushes height */}
           <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-6 lg:pt-20 xl:pt-20 3xl:pt-20">
           <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
+              {/* No overflow style needed here, content pushes height */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
                 {/* Left column projects */}
                 <div className="flex flex-col items-center justify-center space-y-4 lg:space-y-5 xl:space-y-6">
@@ -404,17 +446,7 @@ const NewLanding = () => {
                       className="relative rounded-lg overflow-hidden shadow-lg w-full"
                     >
                       <div className="relative aspect-video">
-                        {activeVideo === project.id && project.videoUrl ? (
-                          <iframe
-                          // Added &muted=1 to the src URL
-                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
-                          allow="autoplay; fullscreen; picture-in-picture"
-                            allowFullScreen
-                            className="absolute top-0 left-0 w-full h-full border-0"
-                            title={project.title}
-                          ></iframe>
-                        ) : (
-                          // Render button/image if no active video or no video URL for this project
+                        {/* Desktop uses modal, so embedded video here is not used */}
                           <button
                             onClick={() => handleVideoClick(project.id)}
                             // Kept group class if needed, but removed hover effects relying on it
@@ -444,7 +476,6 @@ const NewLanding = () => {
                               </div>
                             )}
                           </button>
-                        )}
                       </div>
                     </motion.div>
                   ))}
@@ -460,17 +491,7 @@ const NewLanding = () => {
                       className="relative rounded-lg overflow-hidden shadow-lg w-full"
                     >
                       <div className="relative aspect-video">
-                         {activeVideo === project.id && project.videoUrl ? (
-                          <iframe
-                          // Added &muted=1 to the src URL
-                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
-                          allow="autoplay; fullscreen; picture-in-picture"
-                            allowFullScreen
-                            className="absolute top-0 left-0 w-full h-full border-0"
-                            title={project.title}
-                          ></iframe>
-                        ) : (
-                          // Render button/image if no active video or no video URL for this project
+                         {/* Desktop uses modal, so embedded video here is not used */}
                           <button
                             onClick={() => handleVideoClick(project.id)}
                              // Kept group class if needed, but removed hover effects relying on it
@@ -500,7 +521,6 @@ const NewLanding = () => {
                               </div>
                             )}
                           </button>
-                        )}
                       </div>
                     </motion.div>
                   ))}
@@ -508,6 +528,7 @@ const NewLanding = () => {
               </div>
 
               {/* Copyright */}
+               {/* This div now simply appears after the grid */}
               <div className="mdlg:mt-10 xl:mt-12 3xl:mt-12 text-right text-[#32506C]/70 text-xs">
                 © Roy Peker, 2025. All Rights Reserved
               </div>
@@ -516,7 +537,8 @@ const NewLanding = () => {
         </div>
 
         {/* Mobile portfolio view (hidden on md and up) */}
-        <div className="md:hidden w-full bg-[#F2E3D5] p-4 overflow-y-auto">
+        {/* Modified this line: Removed overflow-y-auto */}
+        <div className="md:hidden w-full bg-[#F2E3D5] p-4">
           <div className="space-y-4">
             {projects.map((project) => (
               <motion.div
@@ -658,13 +680,13 @@ const NewLanding = () => {
 
       {/* Video Modal - only for desktop */}
       {isBrowser && (
-        <VideoModal 
-          isOpen={videoModalOpen} 
-          onClose={handleCloseVideoModal} 
-          videoId={currentVideoId} 
+        <VideoModal
+          isOpen={videoModalOpen}
+          onClose={handleCloseVideoModal}
+          videoId={currentVideoId}
         />
       )}
-      
+
     </div>
   );
 };
