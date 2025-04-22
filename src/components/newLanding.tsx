@@ -151,7 +151,7 @@ const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: ()
       <div className="absolute inset-0 bg-black bg-opacity-70" onClick={onClose}></div>
       {/* This is the modal content box - sized to maintain 16:9 aspect ratio */}
       <div
-        className="relative bg-[#355c7d]/80 backdrop-blur-md rounded-xl p-4 w-[90%] max-w-[1600px] mx-auto shadow-2xl z-10"
+        className="relative bg-transparent backdrop-blur-md rounded-xl w-[90%] max-w-[1600px] mx-auto shadow-2xl z-10 p-0 overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         <button
@@ -162,14 +162,15 @@ const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: ()
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        {/* 16:9 aspect ratio container */}
-        <div className="aspect-video w-full">
+        {/* 16:9 aspect ratio container - no padding/margins */}
+        <div className="aspect-video w-full overflow-hidden">
           <iframe
             src={`https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            className="w-full h-full rounded-lg border-0"
+            className="w-full h-full border-0 outline-none" 
             title="Video Player"
+            style={{ border: 'none', display: 'block' }}
           ></iframe>
         </div>
       </div>
@@ -389,7 +390,7 @@ const NewLanding = () => {
         {/* and displayed as block on md and UP. The MOBILE section below it is hidden on md and UP.
              This seems correct for showing the grid on desktop and list on mobile. */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
-          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-6 lg:pt-20 xl:pt-16 3xl:pt-16">
+          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-6 lg:pt-20 xl:pt-20 3xl:pt-20">
           <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
