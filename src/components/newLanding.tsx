@@ -168,7 +168,7 @@ const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: ()
             src={`https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            className="w-full h-full rounded-lg "
+            className="w-full h-full rounded-lg border-0"
             title="Video Player"
           ></iframe>
         </div>
@@ -389,7 +389,7 @@ const NewLanding = () => {
         {/* and displayed as block on md and UP. The MOBILE section below it is hidden on md and UP.
              This seems correct for showing the grid on desktop and list on mobile. */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
-          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-6 lg:pt-8 xl:pt-10 3xl:pt-8">
+          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-6 lg:pt-20 xl:pt-16 3xl:pt-16">
           <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
