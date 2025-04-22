@@ -43,45 +43,45 @@ const socialLinks = [
 const projects = [
   {
     id: 1,
-    title: 'VFX Showreel',
-    category: 'VFX',
+    title: 'Film_Reel_2025_v007',
+    category: 'Film_Reel_2025_v007',
     thumbnail: 'For_Gilo/Footage/Covers/Film_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074932894'
   },
   {
     id: 2,
-    title: 'Digital Composition',
-    category: 'Composition',
+    title: 'VFX Games - The Art of Compositing',
+    category: 'VFX Games - The Art of Compositing',
     thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074932475'
+    videoUrl: 'https://vimeo.com/202516691'
   },
   {
     id: 3,
-    title: 'VFX Integration',
-    category: 'Integration',
+    title: 'Lead_Reel_2025_v002',
+    category: 'Lead_Reel_2025_v002',
     thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/202516691'
-  },
-  {
-    id: 4,
-    title: 'VFX Showreel 2',
-    category: 'VFX',
-    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074933563'
-  },
-  {
-    id: 5,
-    title: 'Digital Composition 2',
-    category: 'Composition',
-    thumbnail: 'For_Gilo/Footage/Covers/Onset_Cover_v001.png',
     videoUrl: 'https://vimeo.com/1074936568'
   },
   {
+    id: 4,
+    title: 'Adverts_Reel_2025_v004',
+    category: 'Adverts_Reel_2025_v004',
+    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/1074932475'
+  },
+  {
+    id: 5,
+    title: 'OnSet_Reel_2025_v001',
+    category: 'OnSet_Reel_2025_v001',
+    thumbnail: 'For_Gilo/Footage/Covers/Onset_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/1074933563'
+  },
+  {
     id: 6,
-    title: 'VFX Integration 2',
-    category: 'Integration',
+    title: 'AI- Coming Soon',
+    category: 'Ai - Coming Soon',
     thumbnail: 'For_Gilo/Footage/Covers/AI_Cover_v001.jpg',
-    videoUrl: 'https://vimeo.com/202516691'
+    videoUrl: ''
   }
 ];
 
@@ -294,7 +294,7 @@ const NewLanding = () => {
         {/* Right side - Projects/Portfolio section */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
           <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10">
-            <div className="w-full max-w-5xl">
+          <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
                 {/* Left column projects - Updated to center content */}
@@ -302,7 +302,7 @@ const NewLanding = () => {
                   {projects.slice(0, 3).map((project) => (
                     <motion.div
                       key={project.id}
-                      whileHover={{ scale: 1.02 }}
+                      // Removed whileHover prop here
                       transition={{ duration: 0.3 }}
                       className="relative rounded-lg overflow-hidden shadow-lg w-full"
                     >
@@ -318,23 +318,21 @@ const NewLanding = () => {
                         ) : (
                           <button
                             onClick={() => handleVideoClick(project.id)}
+                            // Keep group class if needed for other styling, but it won't trigger the removed classes
                             className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                           >
                             <Image
                               src={`/${project.thumbnail}`}
                               alt={project.title}
                               fill
-                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              // Removed group-hover:scale-105 class here
+                              className="object-cover transition-transform duration-500"
                               unoptimized
                             />
-                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0">
+                              {/* Removed group-hover:opacity-100 class from the parent div */}
                               <div className="p-4">
-                                <span className="inline-block px-2 py-1 mb-1 bg-[#FF8080] text-white text-xs rounded-full">
-                                  {project.category}
-                                </span>
-                                <h3 className="text-white text-base md:text-lg font-bold">
-                                  {project.title}
-                                </h3>
+
                               </div>
                             </div>
                           </button>
@@ -349,7 +347,7 @@ const NewLanding = () => {
                   {projects.slice(3, 6).map((project) => (
                     <motion.div
                       key={project.id}
-                      whileHover={{ scale: 1.02 }}
+                       // Removed whileHover prop here
                       transition={{ duration: 0.3 }}
                       className="relative rounded-lg overflow-hidden shadow-lg w-full"
                     >
@@ -365,23 +363,21 @@ const NewLanding = () => {
                         ) : (
                           <button
                             onClick={() => handleVideoClick(project.id)}
+                             // Keep group class if needed for other styling
                             className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                           >
                             <Image
                               src={`/${project.thumbnail}`}
                               alt={project.title}
                               fill
-                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              // Removed group-hover:scale-105 class here
+                              className="object-cover transition-transform duration-500"
                               unoptimized
                             />
-                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0">
+                               {/* Removed group-hover:opacity-100 class from the parent div */}
                               <div className="p-4">
-                                <span className="inline-block px-2 py-1 mb-1 bg-[#FF8080] text-white text-xs rounded-full">
-                                  {project.category}
-                                </span>
-                                <h3 className="text-white text-base md:text-lg font-bold">
-                                  {project.title}
-                                </h3>
+
                               </div>
                             </div>
                           </button>
