@@ -389,7 +389,7 @@ const NewLanding = () => {
         {/* and displayed as block on md and UP. The MOBILE section below it is hidden on md and UP.
              This seems correct for showing the grid on desktop and list on mobile. */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
-          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-8 lg:pt-8 xl:pt-8 3xl:pt-6">
+          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-6 lg:pt-8 xl:pt-10 3xl:pt-8">
           <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
@@ -437,11 +437,11 @@ const NewLanding = () => {
                                </div>
                             </div>
                             {/* Optional: Add a visual indicator if there's no video */}
-                             {!project.videoUrl && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-xl font-bold">
-                                    Coming Soon
-                                </div>
-                             )}
+                            {!project.videoUrl && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="text-white font-bold">Coming Soon</span>
+                              </div>
+                            )}
                           </button>
                         )}
                       </div>
@@ -493,11 +493,11 @@ const NewLanding = () => {
                                </div>
                             </div>
                             {/* Optional: Add a visual indicator if there's no video */}
-                             {!project.videoUrl && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-xl font-bold">
-                                    Coming Soon
-                                </div>
-                             )}
+                            {!project.videoUrl && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="text-white font-bold">Coming Soon</span>
+                              </div>
+                            )}
                           </button>
                         )}
                       </div>
@@ -538,6 +538,7 @@ const NewLanding = () => {
                     // Render button/image if no active video or no video URL for this project
                     <button
                       onClick={() => handleVideoClick(project.id)}
+                      // For mobile we'll keep it visible all the time as hover doesn't work well on mobile
                       className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
                        // Disable button if no video URL
                       disabled={!project.videoUrl}
@@ -564,8 +565,8 @@ const NewLanding = () => {
                       </div>
                        {/* Optional: Add a visual indicator if there's no video */}
                         {!project.videoUrl && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-xl font-bold">
-                                Coming Soon
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold">
+                                <span className="text-white font-bold">Coming Soon</span>
                             </div>
                         )}
                     </button>
