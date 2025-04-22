@@ -81,7 +81,7 @@ const projects = [
     title: 'AI- Coming Soon',
     category: 'Ai - Coming Soon',
     thumbnail: 'For_Gilo/Footage/Covers/AI_Cover_v001.jpg',
-    videoUrl: ''
+    videoUrl: '' // Keep as empty string if no video available
   }
 ];
 
@@ -105,7 +105,7 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   }, [isOpen]);
 
   if (!isOpen) return null;
-  
+
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* This is the overlay - kept at 70% opacity as requested */}
@@ -130,9 +130,57 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   );
 };
 
+// Video Modal Component for desktop view
+const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: () => void; videoId: string | null }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  if (!isOpen || !videoId) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* This is the overlay - kept at 70% opacity as requested */}
+      <div className="absolute inset-0 bg-black bg-opacity-70" onClick={onClose}></div>
+      {/* This is the modal content box - sized to maintain 16:9 aspect ratio */}
+      <div
+        className="relative bg-[#355c7d]/80 backdrop-blur-md rounded-xl p-4 w-[90%] max-w-[1600px] mx-auto shadow-2xl z-10"
+        onClick={e => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-20"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        {/* 16:9 aspect ratio container */}
+        <div className="aspect-video w-full">
+          <iframe
+            src={`https://player.vimeo.com/video/${videoId}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full rounded-lg"
+            title="Video Player"
+          ></iframe>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 const NewLanding = () => {
   // State management
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0); // Note: This state seems unused in the current visible structure
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
   const [showContactModal, setShowContactModal] = useState(false);
   const [isBrowser, setIsBrowser] = useState(false);
@@ -146,6 +194,9 @@ const NewLanding = () => {
     success: boolean;
     message: string;
   } | null>(null);
+  // New state for the video modal
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [currentVideoId, setCurrentVideoId] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   // Check for browser environment
@@ -155,7 +206,33 @@ const NewLanding = () => {
 
   // Function to handle video clicks
   const handleVideoClick = (id: number) => {
-    setActiveVideo(activeVideo === id ? null : id);
+     // Only try to play if there's a video URL
+    const project = projects.find(p => p.id === id);
+    if (project && project.videoUrl) {
+      // For desktop, open the modal
+      if (window.innerWidth >= 768) { // md breakpoint is 768px
+        const videoId = project.videoUrl.split('/').pop() || null;
+        setCurrentVideoId(videoId);
+        setVideoModalOpen(true);
+      } else {
+        // For mobile, keep the old behavior
+        if (activeVideo === id) {
+          setActiveVideo(null);
+        } else {
+          setActiveVideo(id);
+        }
+      }
+    } else if (activeVideo !== null) {
+        // If clicking an item with no video while another is playing, close the active one
+        setActiveVideo(null);
+    }
+    // If clicking an item with no video and nothing is playing, do nothing
+  };
+
+  // Close video modal
+  const handleCloseVideoModal = () => {
+    setVideoModalOpen(false);
+    setCurrentVideoId(null);
   };
 
   // Modal handlers
@@ -182,6 +259,7 @@ const NewLanding = () => {
     setSubmitStatus(null);
 
     // Replace with your actual EmailJS credentials
+    // Ensure these are securely handled, e.g., via environment variables in a real app
     const serviceId = 'service_958ibxe';
     const templateId = 'template_5gfc4zi';
     const publicKey = 'EMvss3sajXe2nwsjP';
@@ -194,29 +272,36 @@ const NewLanding = () => {
             message: 'Message sent successfully! I will get back to you soon.'
           });
           setFormData({ name: '', email: '', message: '' });
+          // Keep modal open briefly to show success message, then close
           setTimeout(() => {
             setShowContactModal(false);
-            setSubmitStatus(null);
-          }, 3000);
+            setSubmitStatus(null); // Clear status after modal closes
+          }, 3000); // Close after 3 seconds
           setIsSubmitting(false);
         })
         .catch((error) => {
+          console.error('EmailJS Error:', error); // Log error for debugging
           setSubmitStatus({
             success: false,
             message: 'Failed to send message. Please try again later.'
           });
+          // Keep modal open to show error message until user closes
           setIsSubmitting(false);
         });
     }
   };
 
-  // Slide navigation
+  // Slide navigation (Note: This is for the mobile portfolio section,
+  // but the mobile section currently just lists projects vertically,
+  // so these functions are not used in the current layout).
   const nextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % projects.length);
+    // This logic would be used if you had a carousel for mobile
+    // setActiveSlide((prev) => (prev + 1) % projects.length);
   };
 
   const prevSlide = () => {
-    setActiveSlide((prev) => (prev - 1 + projects.length) % projects.length);
+     // This logic would be used if you had a carousel for mobile
+    // setActiveSlide((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
   return (
@@ -224,11 +309,14 @@ const NewLanding = () => {
       <div className="flex h-full flex-col md:flex-row">
         {/* Left side - Profile section */}
         <div className="w-full md:w-[40%] bg-[#32506C] text-[#F2E3D5] relative flex flex-col p-8 md:p-8 lg:p-16">
-          <div className="flex flex-col h-full justify-center -mt-0 md:-mt-0 lg:-mt-2 3xl:-mt-4">
+          {/* Adjusted negative margin-top to control overall vertical position */}
+          <div className="flex flex-col h-full justify-center -mt-0 md:-mt-0 lg:-mt-14 3xl:-mt-4">
             {/* Content container with proper spacing */}
+            {/* Used space-y for gap between main sections (logo, intro, buttons, social) */}
             <div className="space-y-6 md:space-y-8 lg:space-y-4 3xl:space-y-2 pl-4 md:pl-6 lg:pl-8">
               {/* Logo */}
-              <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] 3xl:h-[300px] -mt-8 md:-mt-10 lg:-mt-12">
+              {/* Adjusted negative margin-top to reduce pull-up effect */}
+              <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] 3xl:h-[300px] -mt-4 md:-mt-6 lg:-mt-8">
                 <Image
                   src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
                   alt="Roy Peker Logo"
@@ -240,6 +328,7 @@ const NewLanding = () => {
               </div>
 
               {/* Intro text */}
+              {/* Gap above this is controlled by space-y on the parent */}
               <div className="space-y-3 md:space-y-8 3xl:space-y-8 pl-4 md:pl-6 lg:pl-8 3xl:pl-14 ">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold " >Hi! I'm Roy!</h1>
                 <div className="text-[#F2E3D5]/90 text-base md:text-lg max-w-md space-y-8">
@@ -249,6 +338,7 @@ const NewLanding = () => {
               </div>
 
               {/* Call to action buttons */}
+              {/* Used pt- classes to add space above buttons */}
               <div className="flex space-x-4 pl-4 md:pl-6 lg:pl-8 3xl:pl-14 md:pt-8 lg:pt-12 xl:pt-16 3xl:pt-44">
                 <a
                   href="/projects/pdf/next.pdf"
@@ -285,56 +375,73 @@ const NewLanding = () => {
             </div>
 
             {/* Copyright mobile only at the bottom of screen */}
+            {/* Note: This copyright is positioned absolutely, which can sometimes
+                 conflict with flex/grid layouts. It might be better placed
+                 statically in the mobile portfolio section instead. */}
             <div className="md:hidden mt-8 text-[#F2E3D5]/60 text-xs absolute bottom-4 left-8">
               © Roy Peker, 2025. All Rights Reserved
             </div>
           </div>
         </div>
 
-        {/* Right side - Projects/Portfolio section */}
+        {/* Right side - Projects/Portfolio section (hidden on md and up) */}
+        {/* NOTE: This div has hidden md:block, which means it's hidden on SMALLER screens */}
+        {/* and displayed as block on md and UP. The MOBILE section below it is hidden on md and UP.
+             This seems correct for showing the grid on desktop and list on mobile. */}
         <div className="hidden md:block w-[60%] bg-[#F2E3D5] relative">
-          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10">
+          <div className="w-full h-full flex items-center justify-center p-6 lg:p-8 xl:p-10 md:pt-8 lg:pt-8 xl:pt-8 3xl:pt-6">
           <div className="w-full max-w-5xl">
               {/* Two column grid for projects */}
               <div className="grid grid-cols-2 gap-4 lg:gap-5 xl:gap-6">
-                {/* Left column projects - Updated to center content */}
+                {/* Left column projects */}
                 <div className="flex flex-col items-center justify-center space-y-4 lg:space-y-5 xl:space-y-6">
                   {projects.slice(0, 3).map((project) => (
                     <motion.div
                       key={project.id}
-                      // Removed whileHover prop here
+                      // Removed whileHover scale effect
                       transition={{ duration: 0.3 }}
                       className="relative rounded-lg overflow-hidden shadow-lg w-full"
                     >
                       <div className="relative aspect-video">
-                        {activeVideo === project.id ? (
+                        {activeVideo === project.id && project.videoUrl ? (
                           <iframe
-                            src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
-                            allow="autoplay; fullscreen; picture-in-picture"
+                          // Added &muted=1 to the src URL
+                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+                          allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
                             className="absolute top-0 left-0 w-full h-full border-0"
                             title={project.title}
                           ></iframe>
                         ) : (
+                          // Render button/image if no active video or no video URL for this project
                           <button
                             onClick={() => handleVideoClick(project.id)}
-                            // Keep group class if needed for other styling, but it won't trigger the removed classes
+                            // Kept group class if needed, but removed hover effects relying on it
                             className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
+                            // Disable button if no video URL
+                            disabled={!project.videoUrl}
                           >
                             <Image
                               src={`/${project.thumbnail}`}
                               alt={project.title}
                               fill
-                              // Removed group-hover:scale-105 class here
+                              // Removed group-hover:scale-105 class
                               className="object-cover transition-transform duration-500"
                               unoptimized
                             />
+                            {/* Gradient Overlay - Removed hover opacity effect */}
+                            {/* Opacity-0 means it's permanently hidden in this desktop view based on the original code */}
                             <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0">
-                              {/* Removed group-hover:opacity-100 class from the parent div */}
-                              <div className="p-4">
-
-                              </div>
+                               <div className="p-4">
+                                 {/* Content here */}
+                               </div>
                             </div>
+                            {/* Optional: Add a visual indicator if there's no video */}
+                             {!project.videoUrl && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-xl font-bold">
+                                    Coming Soon
+                                </div>
+                             )}
                           </button>
                         )}
                       </div>
@@ -342,44 +449,55 @@ const NewLanding = () => {
                   ))}
                 </div>
 
-                {/* Right column projects - Also ensure centered */}
+                {/* Right column projects */}
                 <div className="flex flex-col items-center justify-center space-y-4 lg:space-y-5 xl:space-y-6">
                   {projects.slice(3, 6).map((project) => (
                     <motion.div
                       key={project.id}
-                       // Removed whileHover prop here
+                       // Removed whileHover scale effect
                       transition={{ duration: 0.3 }}
                       className="relative rounded-lg overflow-hidden shadow-lg w-full"
                     >
                       <div className="relative aspect-video">
-                        {activeVideo === project.id ? (
+                         {activeVideo === project.id && project.videoUrl ? (
                           <iframe
-                            src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
-                            allow="autoplay; fullscreen; picture-in-picture"
+                          // Added &muted=1 to the src URL
+                          src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
+                          allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
                             className="absolute top-0 left-0 w-full h-full border-0"
                             title={project.title}
                           ></iframe>
                         ) : (
+                          // Render button/image if no active video or no video URL for this project
                           <button
                             onClick={() => handleVideoClick(project.id)}
-                             // Keep group class if needed for other styling
+                             // Kept group class if needed, but removed hover effects relying on it
                             className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
+                             // Disable button if no video URL
+                            disabled={!project.videoUrl}
                           >
                             <Image
                               src={`/${project.thumbnail}`}
                               alt={project.title}
                               fill
-                              // Removed group-hover:scale-105 class here
+                              // Removed group-hover:scale-105 class
                               className="object-cover transition-transform duration-500"
                               unoptimized
                             />
+                            {/* Gradient Overlay - Removed hover opacity effect */}
+                             {/* Opacity-0 means it's permanently hidden in this desktop view based on the original code */}
                             <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0">
-                               {/* Removed group-hover:opacity-100 class from the parent div */}
-                              <div className="p-4">
-
-                              </div>
+                               <div className="p-4">
+                                 {/* Content here */}
+                               </div>
                             </div>
+                            {/* Optional: Add a visual indicator if there's no video */}
+                             {!project.videoUrl && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-xl font-bold">
+                                    Coming Soon
+                                </div>
+                             )}
                           </button>
                         )}
                       </div>
@@ -389,45 +507,53 @@ const NewLanding = () => {
               </div>
 
               {/* Copyright */}
-              <div className="mt-6 text-right text-[#32506C]/70 text-xs">
+              <div className="mdlg:mt-16 xl:mt-16 3xl:mt-16 text-right text-[#32506C]/70 text-xs">
                 © Roy Peker, 2025. All Rights Reserved
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile portfolio view */}
+        {/* Mobile portfolio view (hidden on md and up) */}
         <div className="md:hidden w-full bg-[#F2E3D5] p-4 overflow-y-auto">
           <div className="space-y-4">
             {projects.map((project) => (
               <motion.div
                 key={project.id}
-                whileHover={{ scale: 1.02 }}
+                // Removed whileHover scale effect from mobile items
+                // whileHover={{ scale: 1.02 }}
                 className="relative rounded-lg overflow-hidden shadow-md"
               >
                 <div className="relative aspect-video">
-                  {activeVideo === project.id ? (
+                  {activeVideo === project.id && project.videoUrl ? (
                     <iframe
-                      src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1`}
+                       // Added &muted=1 to the src URL
+                      src={`https://player.vimeo.com/video/${project.videoUrl.split('/').pop()}?h=0&title=0&byline=0&portrait=0&autoplay=1&muted=1`}
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                       className="absolute top-0 left-0 w-full h-full border-0"
                       title={project.title}
                     ></iframe>
                   ) : (
+                    // Render button/image if no active video or no video URL for this project
                     <button
                       onClick={() => handleVideoClick(project.id)}
                       className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
+                       // Disable button if no video URL
+                      disabled={!project.videoUrl}
                     >
                       <Image
                         src={`/${project.thumbnail}`}
                         alt={project.title}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        // Removed group-hover:scale-105 class from mobile items
+                        className="object-cover transition-transform duration-300"
                         unoptimized
                       />
+                       {/* Gradient overlay for mobile - no opacity control classes needed as per original code */}
                       <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent">
                         <div className="p-4">
+                           {/* Keep category and title visible on mobile thumbnail */}
                           <span className="inline-block px-2 py-1 mb-1 bg-[#FF8080] text-white text-xs rounded-full">
                             {project.category}
                           </span>
@@ -436,13 +562,25 @@ const NewLanding = () => {
                           </h3>
                         </div>
                       </div>
+                       {/* Optional: Add a visual indicator if there's no video */}
+                        {!project.videoUrl && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-xl font-bold">
+                                Coming Soon
+                            </div>
+                        )}
                     </button>
                   )}
                 </div>
               </motion.div>
             ))}
+             {/* Copyright mobile view - moved below the projects */}
+            <div className="mt-6 text-center text-[#32506C]/70 text-xs">
+              © Roy Peker, 2025. All Rights Reserved
+            </div>
           </div>
         </div>
+
+
       </div>
 
       {/* Contact Form Modal */}
@@ -515,6 +653,16 @@ const NewLanding = () => {
           </form>
         </Modal>
       )}
+
+      {/* Video Modal - only for desktop */}
+      {isBrowser && (
+        <VideoModal 
+          isOpen={videoModalOpen} 
+          onClose={handleCloseVideoModal} 
+          videoId={currentVideoId} 
+        />
+      )}
+      
     </div>
   );
 };
