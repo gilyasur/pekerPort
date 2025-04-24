@@ -407,21 +407,21 @@ const NewLanding = () => {
 
               {/* Call to action buttons */}
               {/* Used pt- classes to add space above buttons */}
-              <div className="flex space-x-4 pl-4 md:pl-6 lg:pl-8 3xl:pl-14 md:pt-8 lg:pt-12 xl:pt-16 3xl:pt-44">
-                <a
-                  href="/projects/pdf/next.pdf"
-                  className="bg-[#FF8080] hover:bg-[#FFB868] transition-colors duration-300 text-white px-6 py-3 rounded-full font-medium"
-                  download="Roy_Peker_CV.pdf"
-                >
-                  Download CV
-                </a>
-                <button
-                  onClick={handleOpenModal}
-                  className="bg-[#FF8080] hover:bg-[#FFB868] transition-colors duration-300 text-white px-6 py-3 rounded-full font-medium"
-                >
-                  Say Hello
-                </button>
-              </div>
+              <div className="flex space-x-4 pl-4  md:pl-6 lg:pl-8 3xl:pl-14 md:pt-8 lg:pt-12 xl:pt-16 3xl:pt-44">
+  <a
+    href="/projects/pdf/next.pdf"
+    className="bg-[#FF8080] hover:bg-[#FFB868] transition-colors duration-300 text-white px-6 py-3 rounded-full font-medium text-sm md:text-base" // Added text-sm and md:text-base
+    download="Roy_Peker_CV.pdf"
+  >
+    Download CV
+  </a>
+  <button
+    onClick={handleOpenModal}
+    className="bg-[#FF8080] hover:bg-[#FFB868] transition-colors duration-300 text-white px-6 py-3 rounded-full font-medium text-sm md:text-base" // Added text-sm and md:text-base
+  >
+    Say Hello
+  </button>
+</div>
 
               {/* Social links moved into main content area */}
               <div className="flex space-x-5 pl-4 md:pl-6 lg:pl-8 3xl:pl-14">
@@ -481,35 +481,34 @@ const NewLanding = () => {
                             // Disable button if no video URL
                             disabled={!project.videoUrl}
                           >
-                            <Image
-                              src={`/${project.thumbnail}`}
-                              alt={project.title}
-                              fill
-                              className="object-cover transition-opacity duration-500 group-hover:opacity-0"
-                              unoptimized
-                            />
-                            {/* Hover image - visible only on hover */}
-                            <Image
-                              src={`/${project.hoverUrl}`}
-                              alt={`${project.title} hover`}
-                              fill
-                              className="object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100"
-                              unoptimized
-                            />
-                            {/* Removed gradient overlay and play button */}
+                            {/* Main image layer */}
+                            <div className="absolute inset-0 w-full h-full">
+                              {/* Hover image layer - This is now the base layer, always visible */}
+                              <Image
+                                src={`/${project.hoverUrl}`}
+                                alt={`${project.title} hover`}
+                                fill
+                                className="object-cover" // No opacity classes needed here - it's the base
+                                unoptimized
+                                // Priority is typically for the initially visible image,
+                                // so keep it off this hover image.
+                              />
+                            </div>
+
+                            {/* Main image layer - This is now the top layer that fades out */}
+                            <div className="absolute inset-0 w-full h-full">
+                              <Image
+                                src={`/${project.thumbnail}`}
+                                alt={project.title}
+                                fill
+                                className="object-cover transition-opacity duration-300 group-hover:opacity-0" // Fades out on hover
+                                unoptimized
+                                priority // Keep priority on the initially visible image
+                              />
+                            </div>
+                            
                             {/* Optional: Add a visual indicator if there's no video */}
-                            {!project.videoUrl && (
-                              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#32506C]/70 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                <Image 
-                                  src="/For_Gilo/Footage/Covers/Website_CoverTitles_2025_v002_00080.png" 
-                                  alt="Coming Soon" 
-                                  width={150}
-                                  height={150}
-                                  className="object-contain"
-                                  unoptimized
-                                />
-                              </div>
-                            )}
+                            
                           </button>
                       </div>
                     </motion.div>
@@ -534,35 +533,34 @@ const NewLanding = () => {
                              // Disable button if no video URL
                             disabled={!project.videoUrl}
                           >
-                            <Image
-                              src={`/${project.thumbnail}`}
-                              alt={project.title}
-                              fill
-                              className="object-cover transition-opacity duration-500 group-hover:opacity-0"
-                              unoptimized
-                            />
-                            {/* Hover image - visible only on hover */}
+                            {/* Main image layer */}
+                            <div className="absolute inset-0 w-full h-full">
+                            {/* Hover image layer - This is now the base layer, always visible */}
+                            {/* It's placed *first* in the code but will be *underneath* due to the second layer */}
                             <Image
                               src={`/${project.hoverUrl}`}
                               alt={`${project.title} hover`}
                               fill
-                              className="object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                              className="object-cover" // No opacity classes needed here - it's the base
                               unoptimized
+                              // Priority typically applies to the initially visible content
                             />
-                            {/* Removed gradient overlay and play button */}
-                            {/* Optional: Add a visual indicator if there's no video */}
-                            {!project.videoUrl && (
-                              <div className="absolute inset-0 flex flex-col items-center justify-center text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold   z-10">
-                                {/* <Image 
-                                  src="/For_Gilo/Footage/Covers/Website_CoverTitles_2025_v002_00080.png" 
-                                  alt="Coming Soon" 
-                                  width={400}
-                                  height={650}
-                                  className="object-contain "
-                                  unoptimized
-                                /> */}
-                              </div>
-                            )}
+                          </div>
+
+                          {/* Main image layer - This is now the top layer that fades out */}
+                          {/* It's placed *second* in the code, stacking on top */}
+                          <div className="absolute inset-0 w-full h-full">
+                            <Image
+                              src={`/${project.thumbnail}`}
+                              alt={project.title}
+                              fill
+                              className="object-cover transition-opacity duration-300 group-hover:opacity-0" // Fades out on hover
+                              unoptimized
+                              priority // Keep priority on the initially visible image
+                            />
+                          </div>
+                            
+                           
                           </button>
                       </div>
                     </motion.div>
@@ -621,7 +619,8 @@ const NewLanding = () => {
                        {/* Optional: Add a visual indicator if there's no video */}
                         {!project.videoUrl && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold">
-                                <span className="text-white font-bold">Coming Soon</span>
+
+                              <img src="/For_Gilo/Footage/Latest TinyPNG/AI_Hover_v002.jpg" alt="Coming Soon" />
                             </div>
                         )}
                     </button>
