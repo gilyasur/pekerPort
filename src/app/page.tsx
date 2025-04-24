@@ -8,6 +8,8 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import NewLanding from '@/components/newLanding';
+import Ai from '@/components/Ai';
+
 
 export default function Home() {
   const { activeSection } = useSection();

@@ -45,43 +45,49 @@ const projects = [
     id: 1,
     title: 'Film_Reel_2025_v007',
     category: 'Film_Reel_2025_v007',
-    thumbnail: 'For_Gilo/Footage/Covers/Film_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074932894'
+    thumbnail: 'For_Gilo/Footage/Latest TinyPNG/Film_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/1074932894',
+    hoverUrl: 'For_Gilo/Footage/Latest TinyPNG/Film_Hover_v002.jpg'
   },
   {
     id: 2,
     title: 'VFX Games - The Art of Compositing',
     category: 'VFX Games - The Art of Compositing',
-    thumbnail: 'For_Gilo/Footage/Covers/VFX_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/202516691'
+    thumbnail: 'For_Gilo/Footage/Latest TinyPNG/VFX_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/202516691',
+    hoverUrl: 'For_Gilo/Footage/Latest TinyPNG/VFX_Hover_v002.jpg'
   },
   {
     id: 3,
     title: 'Lead_Reel_2025_v002',
     category: 'Lead_Reel_2025_v002',
-    thumbnail: 'For_Gilo/Footage/Covers/Lead_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074936568'
+    thumbnail: 'For_Gilo/Footage/Latest TinyPNG/Lead_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/1074936568',
+    hoverUrl: 'For_Gilo/Footage/Latest TinyPNG/Lead_Hover_v002.jpg'
   },
   {
     id: 4,
     title: 'Adverts_Reel_2025_v004',
     category: 'Adverts_Reel_2025_v004',
-    thumbnail: 'For_Gilo/Footage/Covers/Ads_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074932475'
+    thumbnail: 'For_Gilo/Footage/Latest TinyPNG/Ads_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/1074932475',
+    hoverUrl: 'For_Gilo/Footage/Latest TinyPNG/Ads_Hover_v002.jpg'
   },
   {
     id: 5,
     title: 'OnSet_Reel_2025_v001',
     category: 'OnSet_Reel_2025_v001',
-    thumbnail: 'For_Gilo/Footage/Covers/Onset_Cover_v001.png',
-    videoUrl: 'https://vimeo.com/1074933563'
+    thumbnail: 'For_Gilo/Footage/Latest TinyPNG/Onset_Cover_v001.png',
+    videoUrl: 'https://vimeo.com/1074933563',
+    hoverUrl: 'For_Gilo/Footage/Latest TinyPNG/Onset_Hover_v002.jpg'
   },
   {
     id: 6,
     title: 'AI- Coming Soon',
     category: 'Ai - Coming Soon',
-    thumbnail: 'For_Gilo/Footage/Covers/AI_Cover_v001.jpg',
-    videoUrl: '' // Keep as empty string if no video available
+    thumbnail: 'For_Gilo/Footage/Latest TinyPNG/AI_Cover_v002.jpg',
+    videoUrl: '', // Keep as empty string if no video available,
+    hoverUrl: 'For_Gilo/Footage/Latest TinyPNG/AI_Hover_v002.jpg'
   }
 ];
 
@@ -136,7 +142,7 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+          className="absolute top-3 right-12 text-white/80 hover:text-white transition-colors"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -194,9 +200,9 @@ const VideoModal = ({ isOpen, onClose, videoId }: { isOpen: boolean; onClose: ()
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-20"
+          className="absolute top-3 right-12 text-white/80 hover:text-white transition-colors z-20"
         >
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -297,11 +303,31 @@ const NewLanding = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Replace with your actual EmailJS credentials
-    // Ensure these are securely handled, e.g., via environment variables in a real app
-    const serviceId = 'service_958ibxe';
-    const templateId = 'template_5gfc4zi';
-    const publicKey = 'EMvss3sajXe2nwsjP';
+    // Get environment variables from either Next.js or the runtime config
+    const getEnv = (key: string, fallback: string = '') => {
+      // Check if window.ENV exists (for drag-and-drop deployment)
+      if (typeof window !== 'undefined' && window.ENV && window.ENV[key]) {
+        return window.ENV[key];
+      }
+      // Otherwise use Next.js env vars
+      return process.env[key] || fallback;
+    };
+
+    // Use environment variables for EmailJS credentials
+    const serviceId = getEnv('NEXT_PUBLIC_EMAILJS_SERVICE_ID');
+    const templateId = getEnv('NEXT_PUBLIC_EMAILJS_TEMPLATE_ID');
+    const publicKey = getEnv('NEXT_PUBLIC_EMAILJS_PUBLIC_KEY');
+
+    // Check if any credentials are missing
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS configuration is incomplete');
+      setSubmitStatus({
+        success: false,
+        message: 'Contact form is not properly configured. Please notify the site administrator.'
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     if (formRef.current) {
       emailjs.sendForm(serviceId, templateId, formRef.current, publicKey)
@@ -360,7 +386,7 @@ const NewLanding = () => {
               {/* Adjusted negative margin-top to reduce pull-up effect */}
               <div className="relative w-[140%] h-[120px] md:h-[200px] lg:h-[200px] xl:h-[240px] 3xl:h-[300px] -mt-4 md:-mt-6 lg:-mt-8">
                 <Image
-                  src="/For_Gilo/Footage/Logo/Combine_v003_00080.png"
+                  src="/For_Gilo/Footage/Latest TinyPNG/Combine_v005_00080.png"
                   alt="Roy Peker Logo"
                   fill
                   className="object-contain object-left"
@@ -422,6 +448,7 @@ const NewLanding = () => {
                 For now, leaving it as is, but be aware. */}
              <div className="md:hidden mt-8 text-[#F2E3D5]/60 text-xs absolute bottom-4 left-8">
               © Roy Peker, 2025. All Rights Reserved
+              
             </div>
           </div>
         </div>
@@ -458,21 +485,29 @@ const NewLanding = () => {
                               src={`/${project.thumbnail}`}
                               alt={project.title}
                               fill
-                              // Removed group-hover:scale-105 class
-                              className="object-cover transition-transform duration-500"
+                              className="object-cover transition-opacity duration-500 group-hover:opacity-0"
                               unoptimized
                             />
-                            {/* Gradient Overlay - Removed hover opacity effect */}
-                            {/* Opacity-0 means it's permanently hidden in this desktop view based on the original code */}
-                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0">
-                               <div className="p-4">
-                                 {/* Content here */}
-                               </div>
-                            </div>
+                            {/* Hover image - visible only on hover */}
+                            <Image
+                              src={`/${project.hoverUrl}`}
+                              alt={`${project.title} hover`}
+                              fill
+                              className="object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                              unoptimized
+                            />
+                            {/* Removed gradient overlay and play button */}
                             {/* Optional: Add a visual indicator if there's no video */}
                             {!project.videoUrl && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span className="text-white font-bold">Coming Soon</span>
+                              <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#32506C]/70 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                                <Image 
+                                  src="/For_Gilo/Footage/Covers/Website_CoverTitles_2025_v002_00080.png" 
+                                  alt="Coming Soon" 
+                                  width={150}
+                                  height={150}
+                                  className="object-contain"
+                                  unoptimized
+                                />
                               </div>
                             )}
                           </button>
@@ -503,21 +538,29 @@ const NewLanding = () => {
                               src={`/${project.thumbnail}`}
                               alt={project.title}
                               fill
-                              // Removed group-hover:scale-105 class
-                              className="object-cover transition-transform duration-500"
+                              className="object-cover transition-opacity duration-500 group-hover:opacity-0"
                               unoptimized
                             />
-                            {/* Gradient Overlay - Removed hover opacity effect */}
-                             {/* Opacity-0 means it's permanently hidden in this desktop view based on the original code */}
-                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0">
-                               <div className="p-4">
-                                 {/* Content here */}
-                               </div>
-                            </div>
+                            {/* Hover image - visible only on hover */}
+                            <Image
+                              src={`/${project.hoverUrl}`}
+                              alt={`${project.title} hover`}
+                              fill
+                              className="object-cover transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                              unoptimized
+                            />
+                            {/* Removed gradient overlay and play button */}
                             {/* Optional: Add a visual indicator if there's no video */}
                             {!project.videoUrl && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span className="text-white font-bold">Coming Soon</span>
+                              <div className="absolute inset-0 flex flex-col items-center justify-center text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold   z-10">
+                                {/* <Image 
+                                  src="/For_Gilo/Footage/Covers/Website_CoverTitles_2025_v002_00080.png" 
+                                  alt="Coming Soon" 
+                                  width={400}
+                                  height={650}
+                                  className="object-contain "
+                                  unoptimized
+                                /> */}
                               </div>
                             )}
                           </button>
@@ -562,30 +605,19 @@ const NewLanding = () => {
                     <button
                       onClick={() => handleVideoClick(project.id)}
                       // For mobile we'll keep it visible all the time as hover doesn't work well on mobile
-                      className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer group"
+                      className="absolute inset-0 w-full h-full p-0 border-0 bg-transparent cursor-pointer"
                        // Disable button if no video URL
                       disabled={!project.videoUrl}
                     >
+                      {/* For mobile, always show the hover image by default */}
                       <Image
-                        src={`/${project.thumbnail}`}
+                        src={`/${project.hoverUrl}`}
                         alt={project.title}
                         fill
-                        // Removed group-hover:scale-105 class from mobile items
-                        className="object-cover transition-transform duration-300"
+                        className="object-cover"
                         unoptimized
                       />
-                       {/* Gradient overlay for mobile - no opacity control classes needed as per original code */}
-                      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/30 to-transparent">
-                        <div className="p-4">
-                           {/* Keep category and title visible on mobile thumbnail */}
-                          <span className="inline-block px-2 py-1 mb-1 bg-[#FF8080] text-white text-xs rounded-full">
-                            {project.category}
-                          </span>
-                          <h3 className="text-white text-lg font-bold">
-                            {project.title}
-                          </h3>
-                        </div>
-                      </div>
+                       {/* Removed gradient overlay */}
                        {/* Optional: Add a visual indicator if there's no video */}
                         {!project.videoUrl && (
                             <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-[#F2E3D5] text-2xl lg:text-4xl 3xl:text-5xl font-bold">
